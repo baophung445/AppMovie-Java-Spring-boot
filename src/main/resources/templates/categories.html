@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+		<title th:text="${web.wname}"></title>
+		
+		<script th:src="@{~/js/jquery-1.11.1.min.js}"></script>
+		<script th:src="@{~/js/bootstrap.js}"></script>
+		<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
+		<link th:href="@{~/fonts/font-awesome.min.css}" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" th:href="@{~/css/bootstrap.min.css}">
+		<link rel="stylesheet" th:href="@{~/css/style.css}">
+	</head>
+	<body>
+		<div id="site-content">
+			<header th:replace="~{./navigation_bar_layout :: header}"></header>
+			<main class="main-content">
+				<div class="container">
+					<div class="page">
+						<div class="breadcrumbs">
+							<a href="index">Home</a>
+							<span>Category</span>
+						</div>
+
+						<div class="filters">
+							<select name="#" id="selectCategories">
+								<option th:value="ALL" th:utext="All" th:selected="true"></option>
+								<option th:each="category : ${listCategory}" th:value="${category.cid}" th:utext="${category.cname}">
+							</select>
+							<select name="#" id="selectYears">
+								<option th:value="ALL" th:utext="All" th:selected="true"></option>
+								<option th:each="year : ${listYear}" th:value="${year}" th:utext="${year}">
+							</select>
+						</div>
+						
+							<!--  pagination -->
+						<div class="movie-list">
+							<div class="movie" th:each="film,filmStat : ${listFilm}" th:if="${film.fdeploy == 1 and filmStat.index >= (currentPage - 1) * maxItem and filmStat.index < currentPage * maxItem}">
+								<figure class="movie-poster"><a th:href="@{~/review/{id}(id=${film.fid})}"><img th:src="@{~/image/{imageurl}(imageurl=${film.fimageurl})}" th:alt="${film.fname}" style="max-height: 350px;min-height: 350px"></a></figure>
+								<div class="movie-title"><a th:href="@{~/review/{id}(id=${film.fid})}" th:text="${film.fname}"></a></div>
+							</div>
+							
+						<!--  pagination -->
+						<div class="pagination d-flex justify-content-center" th:if="${pageCount != 0}">
+							<a th:href="@{~/categories/{cid}/{year}/{page}(page=${currentPage - 1}, cid=${cid}, year=${fyear})}" class="page-number prev"><i class="fa fa-angle-left"></i></a>
+							<span th:each="page : ${pages}">
+								<span th:if="${page == currentPage}">
+									<a class="page-number current" th:utext="${page}" ></a>
+								</span>
+								<span th:unless="${page == currentPage}">
+									<a class="page-number" th:utext="${page}" th:href="@{~/categories/{cid}/{year}/{page}(page=${page}, cid=${cid}, year=${fyear})}"></a>
+								</span>
+							</span>
+							<a th:href="@{~/categories/{cid}/{year}/{page}(page=${currentPage + 1}, cid=${cid}, year=${fyear})}" class="page-number next"><i class="fa fa-angle-right"></i></a>
+						</div>
+						</div>
+					</div> 
+					<input type="hidden" id="cid" name="modelAttr" th:value="${cid}"/>
+					<input type="hidden" id="fyear" name="modelAttr" th:value="${fyear}"/>
+				</div> <!-- .container -->
+			</main>
+			<footer th:replace="~{./footer_layout :: footer}"></footer>
+		</div>
+		
+		<script th:src="@{~/js/plugins.js}"></script>
+		<script th:src="@{~/js/app.js}"></script>
+		<script type="text/javascript">
+			$( document ).ready(function() {
+	    		$('#category').addClass('current-menu-item');
+	    		
+	    		var selectedCategory = $('#cid').val();
+	    		$('#selectCategories').val(selectedCategory);
+	    		
+	    		var selectedYears = $('#fyear').val();
+	    		$('#selectYears').val(selectedYears);
+			});
+			
+			$('#selectCategories').change(function(){ 
+			    var value = $(this).val();
+			    var selectedYears = $('#fyear').val();
+			    window.location.replace('/categories/' + value + '/' + selectedYears);
+			});
+			
+			$('#selectYears').change(function(){ 
+			    var value = $(this).val();
+			    var selectedCategory = $('#cid').val();
+			    window.location.replace('/categories/' + selectedCategory + '/' + value);
+			});
+		</script>
+		
+	</body>
+</html>

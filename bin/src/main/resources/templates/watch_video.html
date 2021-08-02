@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.springframework.org/security/tags">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+	<meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
+	<meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
+	<title th:text="${web.wname}"></title>
+
+	<script th:src="@{~/js/jquery-1.11.1.min.js}"></script>
+	<script th:src="@{~/js/bootstrap.js}"></script>
+	<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
+	<link th:href="@{~/fonts/font-awesome.min.css}" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" th:href="@{~/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{~/css/style.css}">
+</head>
+<body>
+	<div id="site-content">
+		<header th:replace="~{./navigation_bar_layout :: header}"></header>
+		<main class="main-content">	
+			<div class="container">
+				<div class="page">
+					<div class="breadcrumbs">
+						<a th:href="@{/index}">Home</a>
+						<span th:text="${film.fname}"></span>
+						<div class="btn btn-primary float-right" data-toggle="modal" data-target="#createModal" onclick="setHiddenFieldModal()">Report This Video</div>
+					</div>
+				</div>
+				<div class="embed-responsive embed-responsive-16by9" id="myVideo">
+					<iframe class="embed-responsive-item" th:src="@{(${filmDetail.furl})}" allowfullscreen="allowfullscreen"></iframe>	
+				</div>
+				<div class="modal" tabindex="-1" role="dialog" id="createModal">
+  					<div class="modal-dialog" role="document">
+  				
+  						<!-- Modal content -->
+    					<div class="modal-content">
+    						<div class="modal-header">
+        						<h3 class="modal-title">Create report</h3>
+     						</div>
+    						<!-- Modal body -->
+      						<div class="modal-body">
+      							<div class="form-group">
+      									 <form method="POST" enctype="multipart/form-data" id="fileUploadForm">
+      									 	Type of report:
+      									 	<select class="form-control" id="selectTypeReport" name="rpType">
+      									 		<option value="0" selected="selected">Issue/ Error</option>
+      									 		<option value="1">Warning</option>
+    											<option value="2">It's good</option>
+    										</select><br>
+      										<textarea class="form-control" rows="3" id="reportDescription" name="rpDescription" placeholder="Description here..."></textarea><br>
+      										<input type="hidden" name="episode" id="hiddenEpisode">
+      										<input type="hidden" name="fid" id="hiddenFilmId">
+      										Attachment: <input type="file" name="data" class="form-control"><br>
+      									</form> 
+      								</div>
+      						</div>
+      					
+      						<!-- Modal footer -->
+      						<div class="modal-footer">
+        						<button type="button" class="btn btn-primary" id="btnCreate">Yes</button>
+        						<button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+      						</div>
+    					</div>
+  					</div>
+				</div>
+			</div>
+			<div class="container">
+				<input type="hidden" th:value="${webDomain}" id="webDomain">
+				<input type="hidden" th:value="${film.fid}" id="fid">
+				<input type="hidden" th:value="${web.wguestAvatartUrl}" id="wguestAvatartUrl">
+				<input type="hidden" th:value="${web.wmemberAvatartUrl}" id="wmemberAvatartUrl">
+				<input type="hidden" th:value="${web.wadminAvatarUrl}" id="wadminAvatarUrl">
+				
+				<span th:each="fDetail : ${listFilmDetail}">
+					<button th:text="${fDetail.episode}" th:id="${fDetail.episode}" class="btn btn-primary" onclick="changeVideo(this.id)"></button>
+				</span>
+				<br><br>
+				<div id="comments" class="form-group">
+					<textarea rows="3" class="form-control" id="contentComment" placeholder="Enter your comment here..."></textarea>
+					<div class="btn btn-primary float-right" id="btnAddComment" onclick="addComment()">Send Comment</div>
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
+				</div>
+				<br><br>
+				
+				<div>
+        			<div class="panel panel-default widget">
+            			<div class="panel-heading">
+                			<span class="glyphicon glyphicon-comment"></span>
+                			<h3 class="panel-title">Recent Comments</h3>
+                			<span class="label label-info" th:text="${countComment}" id="cCount"></span>
+            			</div>
+            			<div class="panel-body">
+                			<ul class="list-group" id="listComment">
+                    			<li class="list-group-item" th:each="comment,iter : ${listComment}" th:if="${iter.index < commentShow}">
+                        			<div class="row">
+                            			<div class="col-xs-2 col-md-1">
+                            				<img th:src="@{~/image/{guest} (guest = ${web.wguestAvatartUrl})}" class="img-circle img-responsive" alt="" th:if="${comment.uname == 'Guest'}"/>
+                            				<img th:src="@{~/image/{admin} (admin = ${web.wadminAvatarUrl})}" class="img-circle img-responsive" alt="" th:if="${comment.uname == 'Admin'}"/>
+                            				<img th:src="@{~/image/{member} (member = ${web.wmemberAvatartUrl})}" class="img-circle img-responsive" alt="" th:if="${comment.uname != 'Admin' and comment.uname != 'Guest'}"/>
+                            			</div>
+                            			<div class="col-xs-10 col-md-11">
+                                			<div>
+                                				
+                                    			<span th:text="${comment.uname}" class="unameComment" th:if="${comment.uname == 'Guest'}"></span>
+                                    			<span th:text="${comment.uname}" class="unameCommentAdmin" th:if="${comment.uname == 'Admin'}"></span>
+                                    			<span th:text="${comment.uname}" class="unameCommentMember" th:if="${comment.uname != 'Admin' and comment.uname != 'Guest'}"></span>
+                                    			
+                                    			<div class="mic-info">
+                                        			On: <span th:text="${comment.ctime}"></span>
+                                    			</div>
+                                			</div>
+                                			<div class="comment-text">
+                                    			<span th:text="${comment.content}" class="commentContent"></span>
+                                			</div>
+                                			<div class="action" sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')">
+                                    			<div class="btn btn-danger btn-xs" th:id="${comment.cmid}" onclick="deleteComment(id)" title="Delete">
+                                        			<span class="glyphicon glyphicon-trash"></span>
+                                    			</div>
+                                			</div>
+                            			</div>
+                        			</div>
+                    			</li>	
+                			</ul>
+                			<input type="hidden" th:value="${commentShow}" id="commentShow">
+                			<input type="hidden" th:value="${countComment}" id="countComment">
+                			<div class="btn btn-primary btn-sm btn-block" role="button" th:if="${countComment > commentShow}" onclick="moreComments()" id="btnMore">
+                				<span class="glyphicon glyphicon-refresh moreIcon"></span> <span class="moreIcon">More</span>
+                			</div>
+            			</div>
+        			</div>
+    			</div>
+			</div>
+		</main>
+		<footer th:replace="~{./footer_layout :: footer}"></footer>
+	</div>
+	<script th:src="@{~/js/plugins.js}"></script>
+	<script th:src="@{~/js/app.js}"></script>
+	<script th:src="@{~/js/watch_video.js}"></script>
+</body>
+</html>

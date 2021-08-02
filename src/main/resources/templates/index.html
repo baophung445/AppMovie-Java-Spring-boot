@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0,maximum-scale=1">
+<title th:text="${web.wname}"></title>
+
+<script th:src="@{~/js/jquery-1.11.1.min.js}"></script>
+<script th:src="@{~/js/bootstrap.js}"></script>
+<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|"
+	rel="stylesheet" type="text/css">
+<link th:href="@{~/fonts/font-awesome.min.css}" rel="stylesheet"
+	type="text/css">
+<link rel="stylesheet" th:href="@{~/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{~/css/style.css}">
+
+</head>
+<body>
+	<div id="site-content">
+		<header th:replace="~{./navigation_bar_layout :: header}"></header>
+		<div class="header-inner-change ">
+			<div class="container">
+				<h1>Xem phim online mới nhất | Tải phim FHD</h1>
+				<h3>Xem phim onine Hàn Quốc, Mỹ, Nhật bản, Trung Quốc, Ấn Độ,
+					Thái Lan mới nhất với chất lượng FHD, 4K hoàn toàn miễn phí không
+					quảng cáo. Tham gia thành viên diễn đàn Vua Phim để nhận chia sẻ
+					những phim hay chất lượng cao có bản quyền miễn phí xem online tốc
+					độ cao</h3>
+			</div>
+		</div>
+		<main class="main-content">
+			<div class="container">
+				<div class="page">
+					<div class="banner-header-filmhot">
+						<div class="row">
+							<div class="col-md-6 col-sx-12">
+								<div class="reponsive-img">
+									<a th:href="@{~/review/{id} (id = ${Filmhot[0].fid})}"><img
+										class="img-banner"
+										th:src="@{~/image/{imageurl}(imageurl=${Filmhot[0].fimageurl})}"
+										alt="Movie hot"
+										style="height: 100%; width: 100%; object-fit: cover;"> </a>
+									<img alt="1080-full-hd" src="image/1080_full_hd.jpg"
+										class="img-full-hd" style="width: 60px; height: 60px"> </img>
+								</div>
+							</div>
+
+							<div class="col-md-6 description">
+								<h2 class="movie-title" th:text="${Filmhot[0].fname}"></h2>
+								<p th:text="${Filmhot[0].introduction}"></p>
+								<ul class="movie-meta">
+									<li><strong>Rating:</strong><br>
+										<div id="rating">
+											<input type="radio" id="star5" name="rating" value="5"
+												checked="checked" th:if="${rate == 5}"
+												onclick="ratingVideo(id)" /> <input type="radio" id="star5"
+												name="rating" value="5" onclick="ratingVideo(id)"
+												th:unless="${rate == 5}" /> <label class="full" for="star5"
+												title="Awesome - 5 stars"></label> <input type="radio"
+												id="star4half" name="rating" value="4 and a half"
+												checked="checked" th:if="${rate == 4.5}"
+												onclick="ratingVideo(id)" /> <input type="radio"
+												id="star4half" name="rating" value="4 and a half"
+												onclick="ratingVideo(id)" th:unless="${rate == 4.5}" /> <label
+												class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+
+											<input type="radio" id="star4" name="rating" value="4"
+												checked="checked" th:if="${rate == 4}"
+												onclick="ratingVideo(id)" /> <input type="radio" id="star4"
+												name="rating" value="4" onclick="ratingVideo(id)"
+												th:unless="${rate == 4}" /> <label class="full" for="star4"
+												title="Pretty good - 4 stars"></label> <input type="radio"
+												id="star3half" name="rating" value="3 and a half"
+												checked="checked" th:if="${rate == 3.5}"
+												onclick="ratingVideo(id)" /> <input type="radio"
+												id="star3half" name="rating" value="3 and a half"
+												onclick="ratingVideo(id)" th:unless="${rate == 3.5}" /> <label
+												class="half" for="star3half" title="Meh - 3.5 stars"></label>
+
+											<input type="radio" id="star3" name="rating" value="3"
+												checked="checked" th:if="${rate == 3}"
+												onclick="ratingVideo(id)" /> <input type="radio" id="star3"
+												name="rating" value="3" onclick="ratingVideo(id)"
+												th:unless="${rate == 3}" /> <label class="full" for="star3"
+												title="Meh - 3 stars"></label> <input type="radio"
+												id="star2half" name="rating" value="2 and a half"
+												checked="checked" th:if="${rate == 2.5}"
+												onclick="ratingVideo(id)" /> <input type="radio"
+												id="star2half" name="rating" value="2 and a half"
+												onclick="ratingVideo(id)" th:unless="${rate == 2.5}" /> <label
+												class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+
+											<input type="radio" id="star2" name="rating" value="2"
+												checked="checked" th:if="${rate == 2}"
+												onclick="ratingVideo(id)" /> <input type="radio" id="star2"
+												name="rating" value="2" onclick="ratingVideo(id)"
+												th:unless="${rate == 2}" /> <label class="full" for="star2"
+												title="Kinda bad - 2 stars"></label> <input type="radio"
+												id="star1half" name="rating" value="1 and a half"
+												checked="checked" th:if="${rate == 1.5}"
+												onclick="ratingVideo(id)" /> <input type="radio"
+												id="star1half" name="rating" value="1 and a half"
+												onclick="ratingVideo(id)" th:unless="${rate == 1.5}" /> <label
+												class="half" for="star1half" title="Meh - 1.5 stars"></label>
+
+											<input type="radio" id="star1" name="rating" value="1"
+												checked="checked" th:if="${rate == 1}"
+												onclick="ratingVideo(id)" /> <input type="radio" id="star1"
+												name="rating" value="1" onclick="ratingVideo(id)"
+												th:unless="${rate == 1}" /> <label class="full" for="star1"
+												title="Sucks big time - 1 star"></label> <input type="radio"
+												id="starhalf" name="rating" value="half" checked="checked"
+												th:if="${rate == 0.5}" onclick="ratingVideo(id)" /> <input
+												type="radio" id="starhalf" name="rating" value="half"
+												onclick="ratingVideo(id)" th:unless="${rate == 0.5}" /> <label
+												class="half" for="starhalf"
+												title="Sucks big time - 0.5 stars"></label>
+										</div>
+										<h2 id="yourPoint"></h2></li>
+
+									<li class="clear-both"><strong>View: </strong> <span
+										th:text="${Filmhot[0].fview}"></span></li>
+									<li><strong>Length: </strong><span
+										th:text="${Filmhot[0].length}"></span></li>
+									<li th:if="${Filmhot[0].fepisodecount > 1}"><strong>Video
+											count: </strong><span th:text="${Filmhot[0].fepisodecount}"></span></li>
+									<li><strong>Year: </strong> <span
+										th:text="${Filmhot[0].fyear}"></span></li>
+									<li><strong>Country: </strong> <span
+										th:text="${Filmhot[0].country.coname}"></span></li>
+									<!-- <li><strong>Category: </strong> <span
+										th:text="${categories}"></span></li> -->
+									<li><strong>Accept account: </strong> <span
+										th:text="${Filmhot[0].acceptAccount}"></span></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+
+					<!--  Phim hành động-->
+
+
+
+					<div class="film-action" th:if="${isAction == true}">
+						<div class="movie-title">
+							<a class="title" th:href="@{~/categories/AT/ALL}">Phim hành
+								động</a>
+						</div>
+
+						<div class="row">
+							<div class="row col-md-9" style="margin-top: 15px;">
+								<div class="list-film-action col-md-3 col-xs-6"
+									th:each="film : ${listAction}">
+									<div class="item-film-action"
+										style="margin: 0 5px; margin-bottom: 10px;">
+										<a class="item" th:href="@{~/review/{id}(id=${film.fid})}">
+											<img class="img-film"
+											th:src="@{~/image/{imageurl}(imageurl=${film.fbanner})}"
+											alt="item-film-action">
+											<h4>HD-Vietsub</h4>
+											<div class="description">
+												<h3 th:text="${film.fname}"></h3>
+												<h5 th:text="${film.length}"></h5>
+												<h5 th:text="${film.country.coname}"></h5>
+											</div>
+											<div class="item-bottom"></div>
+										</a>
+									</div>
+								</div>
+							</div>
+
+							<div class="col-md-3">
+								
+								
+							</div>
+
+						</div>
+
+
+
+
+					</div>
+
+
+
+					<!-- Phim kinh dị  -->
+					<!-- <div class="row">
+						<div class="col-sm-6 col-md-3">
+							<div class="latest-movie" th:if="${isHorror == true}">
+								<div class="movie-title">
+									<a class="indexA" th:href="@{~/categories/HR/ALL}">Horror</a>
+								</div>
+								<a th:href="@{~/review/{id} (id = ${listHorror[0].fid})}"><img
+									class="img-format"
+									th:src="@{~/image/{imageurl}(imageurl=${listHorror[0].fbanner})}"
+									alt="Movie 4"></a>
+
+							</div>
+						</div>
+					</div> -->
+
+				</div>
+			</div>
+			<!-- .container -->
+		</main>
+		<footer th:replace="~{./footer_layout :: footer}"></footer>
+	</div>
+
+	<script th:src="@{~/js/plugins.js}"></script>
+	<script th:src="@{~/js/app.js}"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#home').addClass('current-menu-item');
+		});
+	</script>
+</body>
+</html>

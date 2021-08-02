@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+	<meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
+	<meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
+	<title th:text="${web.wname}"></title>
+	
+	<script th:src="@{~/js/jquery-1.11.1.min.js}"></script>
+	<script th:src="@{~/js/bootstrap.js}"></script>
+	<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
+	<link th:href="@{~/fonts/font-awesome.min.css}" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" th:href="@{~/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{~/css/style.css}">
+</head>
+<body>
+	<div id="site-content">
+		<header th:replace="~{./navigation_bar_layout :: header}"></header>
+		<main class="main-content">	
+			<div class="container">
+				<div class="page">
+					<div class="breadcrumbs">
+						<a th:href="@{/index}">Home</a>
+						<span>Video manager</span>
+					</div>
+				</div>
+				<div class="main-content form-group">
+					<input type="hidden" th:value="${webDomain}" id="webDomain">
+        			<h2 class="float-left">Video Manager</h2>
+        			<div class="float-right">
+        				<input type="text" class="my-search-input" placeholder="Search" id="searchCondition">
+        				<button id="btnSearch" class="my-search-button" onclick="searchFilm()"><i class="fa fa-search"></i></button>
+        			</div>
+        			<table class="table table-striped" id="tableId">
+  						<thead class="thead-dark">
+    						<tr>
+      							<th scope="col">#</th>
+      							<th scope="col">Video name</th>
+      							<th scope="col">Deploy status</th>
+      							<th scope="col">Request status</th>
+      							<th scope="col">Request email</th>
+      							<th scope="col">Accept account</th>
+    						</tr>
+  						</thead>
+  						<tbody>
+    						<tr th:each="film,status : ${listFilm}">
+      							<th scope="row">
+      								<input type="radio" name="chosenFilm" th:value="${film.fid}">
+      							</th>
+      							<td th:text="${film.fname}" th:id="${'filmName' + film.fid}"></td>
+      							<td th:text="${film.fdeploy}" th:id="${'filmDeploy' + film.fid}"></td>
+      							<td th:text="${film.frequest}" th:id="${'flimRequest' + film.fid}"></td>
+      							<td th:text="${film.requestEmail}" th:id="${'filmRequestEmail' + film.fid}"></td>
+      							<td th:text="${film.acceptAccount}" th:id="${'filmAcceptAccount' + film.fid}"></td>
+      							<td hidden="hidden" th:text="${film.fepisodecount}" th:id="${'filmEpisodeCount' + film.fid}"></td>
+      							<td hidden="hidden" th:text="${film.fyear}" th:id="${'filmYear' + film.fid}"></td>
+      							<td hidden="hidden" th:text="${film.length}" th:id="${'filmLength' + film.fid}"></td>
+      							<td hidden="hidden" th:text="${film.introduction}" th:id="${'filmIntroduction' + film.fid}"></td>
+    						</tr>
+  						</tbody>
+					</table>
+					<div class="btn btn-primary btn-sm" id="divFilmDetail" onclick="onclickFilmDetail()">Video Detail</div>
+					<div class="btn btn-warning btn-sm" data-toggle="modal" data-target="#updateModal" onclick="onclickEditFunction()" id="divUpdate">Update</div>
+					
+					<div class="modal" tabindex="-1" role="dialog" id="updateModal">
+  						<div class="modal-dialog" role="document">
+  				
+  							<!-- Modal content -->
+    						<div class="modal-content">
+    							<div class="modal-header">
+        							<h3 class="modal-title">Update video</h3>
+     							</div>
+    							<!-- Modal body -->
+      							<div class="modal-body">
+      								<div class="form-group">
+      									 <form method="POST" enctype="multipart/form-data" id="fileUploadForm">
+      										<input type="text" placeholder="Video name" class="form-control" id="newFilmName" name="fname"><br>
+      										<input type="text" placeholder="Year" class="form-control" id="newYear" name="fyear"><br>
+      										<input type="text" placeholder="Length" class="form-control" id="newLength" name="length"><br>
+      										<input type="text" placeholder="Introduction" class="form-control" id="newIntroduction" name="introduction"><br>
+      										<input type="text" placeholder="Deploy status" class="form-control" id="newDeployStatus" name="fdeploy"><br>
+      										<input type="text" placeholder="Request status" class="form-control" id="newRequestStatus" name="frequest"><br>
+      										<input type="text" placeholder="Episode count" class="form-control" id="newEpisodeCount" name="fepisodecount"><br>
+      										<input type="text" placeholder="Request email" class="form-control" id="newRequestEmail" name="requestEmail"><br>
+      										<input type="text" placeholder="Accept Account" class="form-control" id="newAcceptAccount" name="acceptAccount"><br>
+      										Banner: <input type="file" name="fileDatas" class="form-control"><br>
+      										Image: <input type="file" name="fileDatas" class="form-control"> 
+      									</form> 
+      								</div>
+      							</div>
+      					
+      							<!-- Modal footer -->
+      							<div class="modal-footer">
+        							<button type="button" class="btn btn-primary" id="btnEdit">Yes</button>
+        							<button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+      							</div>
+    						</div>
+  						</div>
+					</div>
+    			</div>
+			</div>
+		</main>
+		<footer th:replace="~{./footer_layout :: footer}"></footer>
+	</div>
+	<script th:src="@{~/js/plugins.js}"></script>
+	<script th:src="@{~/js/app.js}"></script>
+	<script th:src="@{~/js/video_manager.js}"></script>
+</body>
+</html>

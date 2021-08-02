@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.springframework.org/security/tags">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+	<title th:text="${web.wname}"></title>
+	
+	<script th:src="@{~/js/jquery-1.11.1.min.js}"></script>
+	<script th:src="@{~/js/bootstrap.js}"></script>
+	<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
+	<link th:href="@{~/fonts/font-awesome.min.css}" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" th:href="@{~/css/bootstrap.min.css}">
+	<link rel="stylesheet" th:href="@{~/css/style.css}">
+</head>
+<body>
+	<div id="site-content">
+		<header th:replace="~{./navigation_bar_layout :: header}"></header>
+		<main class="main-content">	
+			<div class="container">
+				<div class="page">
+					<div class="breadcrumbs">
+						<a th:href="@{/index}">Home</a>
+						<span>Report manager</span>
+						<!-- <span th:text="${film.fname}"></span> -->
+					</div>
+				</div>
+				<div class="main-content form-group">
+        			<h2>Report Manager</h2>
+        			<table class="table table-striped" id="tableId">
+  						<thead class="thead-dark">
+    						<tr>
+      							<th scope="col">#</th>
+      							<th scope="col">Report Type</th>
+      							<th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Assignee</th>
+      							<th scope="col">Report Description</th>
+     	 						<th scope="col">Attachment Url</th>
+     	 						<th scope="col">Report Time</th>
+     	 						<th scope="col">Status</th>
+    						</tr>
+  						</thead>
+  						<tbody>
+    						<tr th:each="report,status : ${listReport}">
+      							<th scope="row" class="td-center"><span th:text="${status.index + 1}" class="center-child"></span></th>
+      							<td th:if="${report.rpType == 2}" class="td-center"><span class="center-child">Good</span></td>
+      							<td th:if="${report.rpType == 1}" class="td-center"><span class="center-child">Warning</span></td>
+      							<td th:if="${report.rpType == 0}" class="td-center"><span class="center-child">Issue/Error</span></td>
+      							<td class="td-center" sec:authorize="hasRole('ROLE_ADMIN')"><span th:text="${report.user.uname}" class="center-child"></span></td>
+      							<td class="td-center"><span th:text="${report.rpDescription}" class="center-child"></span></td>
+      							<td class="td-center"><a th:if="${report.attachmentUrl != null}" th:href="${webDomain + 'image/' + report.attachmentUrl}" th:text="Attachment_file" target="_blank" class="center-child"></a></td>
+      							<td class="td-center"><span th:text="${report.rpTime}" class="center-child"></span></td>
+      							<td class="td-center" th:if="${report.resolve} == false"><button th:id="'buttonResolve' + ${status.index + 1}" class="button-resolve btn btn-primary">Resolve</button></td>
+      							<td class="td-center" th:if="${report.resolve} == true"><span class="center-child">Close</span></td>
+      							<td hidden="hidden" th:text="${report.rpid}"></td>
+    						</tr>
+  						</tbody>
+					</table>
+					<input type="hidden" id="hdnCurrentPage" th:value="${currentPage}">
+					<div class="pagination d-flex justify-content-center" th:if="${pageCount != 0}">
+						<a th:href="@{~/report-manager/{page}(page=${currentPage - 1})}" class="page-number prev"><i class="fa fa-angle-left"></i></a>
+						<span th:each="page : ${pages}">
+							<span th:if="${page == currentPage}">
+								<a class="page-number current" th:utext="${page}" ></a>
+							</span>
+							<span th:unless="${page == currentPage}">
+								<a class="page-number" th:utext="${page}" th:href="@{~/report-manager/{page}(page=${page})}"></a>
+							</span>
+						</span>
+						<a th:href="@{~/report-manager/{page}(page=${currentPage + 1})}" class="page-number next"><i class="fa fa-angle-right"></i></a>
+					</div>
+    			</div>
+			</div>
+		</main>
+		<footer th:replace="~{./footer_layout :: footer}"></footer>
+	</div>
+	<script th:src="@{~/js/plugins.js}"></script>
+	<script th:src="@{~/js/app.js}"></script>
+	<script th:src="@{~/js/report_manager.js}"></script>
+</body>
+</html>

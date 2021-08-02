@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+		<title th:text="${web.wname}"></title>
+		
+		<script th:src="@{~/js/jquery-1.11.1.min.js}"></script>
+		<script th:src="@{~/js/bootstrap.js}"></script>
+		<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
+		<link th:href="@{~/fonts/font-awesome.min.css}" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" th:href="@{~/css/bootstrap.min.css}">
+		<link rel="stylesheet" th:href="@{~/css/style.css}">
+	</head>
+	<body>
+		<div id="site-content">
+			<header th:replace="~{./navigation_bar_layout :: header}"></header>
+			<main class="main-content">
+				<div class="container">
+					<div class="page">
+						<div class="breadcrumbs">
+							<a th:href="@{~/index}">Home</a>
+							<span>Top View</span>
+						</div>
+
+						<div class="movie-list">
+							<div class="movie" th:each="film,filmStat : ${listFilm}" th:if="${film.fdeploy == 1 and filmStat.index >= (currentPage - 1) * maxItem and filmStat.index < currentPage * maxItem}">
+								<figure class="movie-poster"><a th:href="@{~/review/{id}(id=${film.fid})}"><img th:src="@{~/image/{imageurl}(imageurl=${film.fimageurl})}" th:alt="${film.fname}" style="max-height: 350px;min-height: 350px"></a></figure>
+								<div class="movie-title"><a th:href="@{~/review/{id}(id=${film.fid})}" th:text="${film.fname}"></a></div>
+							</div>
+						<div class="pagination d-flex justify-content-center" th:if="${pageCount != 0}">
+							<a th:href="@{~/hotvideo/{page}(page=${currentPage - 1})}" class="page-number prev"><i class="fa fa-angle-left"></i></a>
+							<span th:each="page : ${pages}">
+								<span th:if="${page == currentPage}">
+									<a class="page-number current" th:utext="${page}" ></a>
+								</span>
+								<span th:unless="${page == currentPage}">
+									<a class="page-number" th:utext="${page}" th:href="@{~/hotvideo/{page}(page=${page})}"></a>
+								</span>
+							</span>
+							<a th:href="@{~/hotvideo/{page}(page=${currentPage + 1})}" class="page-number next"><i class="fa fa-angle-right"></i></a>
+						</div>
+						</div>
+					</div>
+				</div> <!-- .container -->
+			</main>
+			<footer th:replace="~{./footer_layout :: footer}"></footer>
+		</div>
+		
+		<script th:src="@{~/js/plugins.js}"></script>
+		<script th:src="@{~/js/app.js}"></script>
+		<script type="text/javascript">
+			$( document ).ready(function() {
+	    		$('#topview').addClass('current-menu-item');
+			});
+		</script>
+		
+	</body>
+</html>

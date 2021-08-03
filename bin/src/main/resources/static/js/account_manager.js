@@ -5,6 +5,7 @@ $(document)
 					$('#btnDelete').click(function() {
 						var chosenIndex = $('#chosenIndex').val();
 						var userId = $('#userId' + chosenIndex).text();
+						
 
 						window.location.replace('deleteAccount/' + userId);
 					})

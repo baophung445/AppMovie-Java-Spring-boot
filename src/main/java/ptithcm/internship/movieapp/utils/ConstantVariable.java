@@ -20,7 +20,7 @@ public class ConstantVariable {
 	public static final String ACCEPT_MAIL_BODY = "Dear \nWe want to notify that your request was accept. Thanks for support our website!";
 	public static final String ACCEPT_EPISODE_MAIL_BODY = "Dear \nWe want to notify that your request was accepted. Thanks for support our website!";
 	public static final String DELETE_ACCOUNT_SUBJECT = "Your account in share yo website was deleted!";
-	public static final String DELETE_ACCOUNT_BODY = "Sorry to say that: \"Your account in our website was deleted. If you have any question, please contact that email below.\"\nduongthichkhampha@gmail.com\nThanks!";
+	public static final String DELETE_ACCOUNT_BODY = "Sorry to say that: \"Your account in our website was deleted. If you have any question, please contact that email below.\"\nbaophung445@gmail.com\nThanks!";
 	public static final String CREATE_ACCOUNT_SUBJECT = "You get account to access share yo website";
 	public static final String CREATE_ACCOUNT_BODY = "Congratulation. You have permission to login our website. \nYou should use your email and this password : ";
 

@@ -49,11 +49,15 @@ public class HomeController {
 			listFilm = listFilm.subList(0, ConstantVariable.TOP_FILM);
 		}
 		
+//		Phim hót nhất ở trang chủ
 		List<Film> Filmhot = filmService.findHotFilmsByView();
-
 		
+// 		Phim hót thứ nhì
+		List<Film> filmTwo= Filmhot.subList(1, 2);
 		
-
+//		Ds phim hót ở trang chủ
+		List<Film> listTree = Filmhot.subList(2, 5);
+		
 		List<Film> listAction = filmService.findHotFilmsByCategoryId("AT", ConstantVariable.BANNER_DEFAULT_URL);
 		List<Film> listFantasy = filmService.findHotFilmsByCategoryId("FA", ConstantVariable.BANNER_DEFAULT_URL);
 		List<Film> listCartoon = filmService.findHotFilmsByCategoryId("CT", ConstantVariable.BANNER_DEFAULT_URL);
@@ -104,7 +108,15 @@ public class HomeController {
 		model.addAttribute("listRomance", listRomance);
 		model.addAttribute("listComedy", listComedy);
 		
+//		Phim hót nhất ở trang bìa
 		model.addAttribute("Filmhot", Filmhot);
+
+//		phim hót nhì tính theo lượt view
+		model.addAttribute("filmTwo", filmTwo);
+//		ds phim hot nhất
+		model.addAttribute("listTree", listTree);
+		
+		
 		
 
 		model.addAttribute("listFilm", listFilm);
@@ -125,6 +137,15 @@ public class HomeController {
 		
 		List<Film> Filmhot = filmService.findHotFilmsByView();
 		
+		
+//		Phim hót thứ nhì
+		List<Film> filmTwo= Filmhot.subList(1, 2);
+		
+//		Ds phim hót ở trang chủ
+		List<Film> listTree = Filmhot.subList(2, 5);
+		
+		
+		
 		List<Film> listAction = filmService.findHotFilmsByCategoryId("AT", ConstantVariable.BANNER_DEFAULT_URL);
 		List<Film> listFantasy = filmService.findHotFilmsByCategoryId("FA", ConstantVariable.BANNER_DEFAULT_URL);
 		List<Film> listCartoon = filmService.findHotFilmsByCategoryId("CT", ConstantVariable.BANNER_DEFAULT_URL);
@@ -176,6 +197,11 @@ public class HomeController {
 		model.addAttribute("listComedy", listComedy);
 		
 		model.addAttribute("Filmhot", Filmhot);
+		
+//		phim hót nhì tính theo lượt view
+		model.addAttribute("filmTwo", filmTwo);
+//		ds phim hot nhất
+		model.addAttribute("listTree", listTree);
 
 		model.addAttribute("listFilm", listFilm);
 		model.addAttribute("size", listFilm.size());

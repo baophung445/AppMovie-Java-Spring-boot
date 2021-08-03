@@ -294,6 +294,7 @@ public class FilmController {
 		if (page < 1) {
 			return "redirect:/categories/" + cid + "/" + year + "/" + 1;
 		}
+		
 		List<Film> listFilm;
 		if (cid.equals("ALL")) {
 			if (year.equals("ALL")) {
@@ -306,6 +307,8 @@ public class FilmController {
 		} else {
 			listFilm = filmService.findFilmsByCidAndYear(cid, Integer.parseInt(year));
 		}
+		
+//		
 		if (listFilm.size() == 0 || listFilm.isEmpty()) {
 			listFilm.add(new Film());
 		} else {
@@ -324,7 +327,9 @@ public class FilmController {
 		for (Film film : listAll) {
 			listYear.add(film.getFyear());
 		}
-
+		
+//		pagination
+		
 		int pageCount = (int) Math.ceil(listFilm.size() / (ConstantVariable.MAX_ITEMS * 1d));
 		int currentPage = page;
 		if (page > pageCount) {
@@ -334,6 +339,8 @@ public class FilmController {
 		for (int i = 1; i <= pageCount; i++) {
 			pages.add(i);
 		}
+		
+		
 		model.addAttribute("pages", pages);
 		model.addAttribute("pageCount", pageCount);
 		model.addAttribute("maxItem", ConstantVariable.MAX_ITEMS);

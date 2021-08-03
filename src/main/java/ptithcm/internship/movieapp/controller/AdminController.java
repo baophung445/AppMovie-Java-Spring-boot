@@ -509,7 +509,7 @@ public class AdminController {
 		return new ResponseEntity<FilmRequest>(new FilmRequest(), HttpStatus.OK);
 	}
 
-	@RequestMapping("deleteVideo/{fid}")
+	@RequestMapping("deleteFilm/{fid}")
 	public String deleteFilm(@PathVariable("fid") String fid) {
 		LOGGER.info("deleteFilm: " + " fid=" + fid);
 

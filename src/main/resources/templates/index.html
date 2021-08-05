@@ -15,6 +15,7 @@
 	type="text/css">
 <link rel="stylesheet" th:href="@{~/css/bootstrap.min.css}">
 <link rel="stylesheet" th:href="@{~/css/style.css}">
+<link rel="stylesheet" th:href="@{~/fontawesome/css/all.min.css}">
 
 </head>
 <body>
@@ -145,8 +146,9 @@
 								<!--  Phim hành động-->
 								<div class="film-action" th:if="${isAction == true}">
 									<div class="movie-title">
-										<a class="title" th:href="@{~/categories/AT/ALL}">Phim
-											hành động</a>
+										<a class="title">Phim hành động</a> <a class="film-all"
+											th:href="@{~/categories/AT/ALL}"> <span> Xem tất
+												cả</span> <i class="fas fa-angle-right"></i></a>
 									</div>
 									<div class="row">
 										<div class="row " style="margin-top: 15px;">
@@ -176,7 +178,9 @@
 								<div class="film-action" th:if="${isRomance == true}">
 									<div class="movie-title">
 										<a class="title" th:href="@{~/categories/RM/ALL}">Phim
-											tình cảm </a>
+											tình cảm </a> <a class="film-all"
+											th:href="@{~/categories/RM/ALL}"> <span> Xem tất
+												cả</span> <i class="fas fa-angle-right"></i></a>
 									</div>
 									<div class="row">
 										<div class="row " style="margin-top: 15px;">
@@ -199,11 +203,8 @@
 												</div>
 											</div>
 										</div>
-
-
 									</div>
 								</div>
-
 							</div>
 
 						</div>
@@ -213,7 +214,8 @@
 								<div class="list-hot">
 									<div class="film-action">
 										<div class="list-film-action ">
-											<div class="item-film-action" style="margin-bottom: 10px;padding-left: 0px;">
+											<div class="item-film-action"
+												style="margin-bottom: 10px; padding-left: 0px;">
 												<a class="item"
 													th:href="@{~/review/{id}(id=${filmTwo[0].fid})}"> <img
 													class="img-film"
@@ -221,7 +223,8 @@
 													alt="item-film-action">
 													<h4>HD-Vietsub</h4>
 													<div class="description">
-														<h3 th:text="${filmTwo[0].fname}" class="hover-change-color" ></h3>
+														<h3 th:text="${filmTwo[0].fname}"
+															class="hover-change-color"></h3>
 														<h5 th:text="${filmTwo[0].length}"></h5>
 														<h5 th:text="${filmTwo[0].country.coname}"></h5>
 													</div>
@@ -244,7 +247,7 @@
 													<img
 														th:src="@{~/image/{imageurl}(imageurl=${film.fbanner})}">
 												</div>
-												<div class="dis" style="margin-left: 6px">
+												<div class="dis" style="margin-left: 15px">
 													<h3 th:text="${film.fname}" class="hover-change"></h3>
 													<h5 th:text="${film.length}"></h5>
 													<div class="fview" style="display: flex">
@@ -255,6 +258,13 @@
 											</div>
 										</a>
 									</div>
+
+									<div
+										style="display: flex; justify-content: center; align-items: center; padding: 7px;">
+										<a class="film-all" th:href="@{~/hotvideo}"> <span>
+												Xem tất cả</span> <i class="fas fa-angle-right"></i></a>
+									</div>
+
 								</div>
 
 

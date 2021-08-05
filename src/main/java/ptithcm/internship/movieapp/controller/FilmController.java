@@ -228,10 +228,82 @@ public class FilmController {
 		return "hotvideo";
 	}
 
+//	Phần filter : thể loại + năm + quốc gia
+	  @RequestMapping("/categories/{cid}/{year}/{country}") public String
+	 getCategoryPageByAll(Model model, @PathVariable("cid") String cid,
+	  
+	  @PathVariable("year") String year , @PathVariable("coid") String coid)
+	  {
+	  
+	  List<Film> listFilm = filmService.findAllFilm();
+	  
+		/* if (cid.equals("ALL") && year.equals("ALL") && country.equals("ALL") ) */
+	  
+//		  listFilm = ;  
+	  
+	  
+	  if (listFilm.size() == 0 || listFilm.isEmpty()) {
+			listFilm.add(new Film());
+		} else {
+			String newName = "";
+			for (Film f : listFilm) {
+				if (f.getFname().length() > ConstantVariable.MAX_FILM_NAME_LENGTH) {
+					newName = f.getFname().substring(0, ConstantVariable.MAX_FILM_NAME_LENGTH) + "...";
+					f.setFname(newName);
+				}
+			}
+		}
+	  
+	  List<Category> listCategory = categoryService.findAllCategory();
+		List<Film> listAll = filmService.findAllFilm();
+
+		Comparator<Integer> cmp = new YearComparator();
+		Set<Integer> list = new HashSet<Integer>();
+		for (Film film : listAll) {
+			list.add(film.getFyear());
+		}
+		List<Integer> listYear = new ArrayList<Integer>();
+		for (Integer y : list) {
+			listYear.add(y);
+		}
+		Collections.sort(listYear, cmp);
+
+		int pageCount = (int) Math.ceil(listFilm.size() / (ConstantVariable.MAX_ITEMS * 1d));
+		int currentPage = 1;
+		List<Integer> pages = new ArrayList<Integer>();
+		for (int i = 1; i <= pageCount; i++) {
+			pages.add(i);
+		}
+
+		List<Country> listCountry = countryService.findAllCountry();
+
+		model.addAttribute("pages", pages);
+		model.addAttribute("pageCount", pageCount);
+		model.addAttribute("maxItem", ConstantVariable.MAX_ITEMS);
+		model.addAttribute("currentPage", currentPage);
+		model.addAttribute("cid", cid);
+		model.addAttribute("fyear", year);
+		model.addAttribute("coid", coid);
+		model.addAttribute("listYear", listYear);
+		model.addAttribute("listFilm", listFilm);
+		model.addAttribute("size", listFilm.size());
+		model.addAttribute("listCategory", listCategory);
+		model.addAttribute("listCountry", listCountry);
+		
+		return "categories";
+	  
+	  }
+	  
+	  
+//	  
+//	  
+	 
+
 	@RequestMapping("/categories/{cid}/{year}")
 	public String getCategoryPageByCid(Model model, @PathVariable("cid") String cid,
 			@PathVariable("year") String year) {
 		List<Film> listFilm;
+
 		if (cid.equals("ALL")) {
 			if (year.equals("ALL")) {
 				listFilm = filmService.findAllFilm();
@@ -243,6 +315,7 @@ public class FilmController {
 		} else {
 			listFilm = filmService.findFilmsByCidAndYear(cid, Integer.parseInt(year));
 		}
+
 		if (listFilm.size() == 0 || listFilm.isEmpty()) {
 			listFilm.add(new Film());
 		} else {
@@ -275,6 +348,9 @@ public class FilmController {
 		for (int i = 1; i <= pageCount; i++) {
 			pages.add(i);
 		}
+
+		List<Country> listCountry = countryService.findAllCountry();
+
 		model.addAttribute("pages", pages);
 		model.addAttribute("pageCount", pageCount);
 		model.addAttribute("maxItem", ConstantVariable.MAX_ITEMS);
@@ -285,6 +361,7 @@ public class FilmController {
 		model.addAttribute("listFilm", listFilm);
 		model.addAttribute("size", listFilm.size());
 		model.addAttribute("listCategory", listCategory);
+		model.addAttribute("listCountry", listCountry);
 		return "categories";
 	}
 
@@ -294,7 +371,7 @@ public class FilmController {
 		if (page < 1) {
 			return "redirect:/categories/" + cid + "/" + year + "/" + 1;
 		}
-		
+
 		List<Film> listFilm;
 		if (cid.equals("ALL")) {
 			if (year.equals("ALL")) {
@@ -307,7 +384,7 @@ public class FilmController {
 		} else {
 			listFilm = filmService.findFilmsByCidAndYear(cid, Integer.parseInt(year));
 		}
-		
+
 //		
 		if (listFilm.size() == 0 || listFilm.isEmpty()) {
 			listFilm.add(new Film());
@@ -327,9 +404,9 @@ public class FilmController {
 		for (Film film : listAll) {
 			listYear.add(film.getFyear());
 		}
-		
+
 //		pagination
-		
+
 		int pageCount = (int) Math.ceil(listFilm.size() / (ConstantVariable.MAX_ITEMS * 1d));
 		int currentPage = page;
 		if (page > pageCount) {
@@ -339,8 +416,9 @@ public class FilmController {
 		for (int i = 1; i <= pageCount; i++) {
 			pages.add(i);
 		}
-		
-		
+
+		List<Country> listCountry = countryService.findAllCountry();
+
 		model.addAttribute("pages", pages);
 		model.addAttribute("pageCount", pageCount);
 		model.addAttribute("maxItem", ConstantVariable.MAX_ITEMS);
@@ -351,6 +429,8 @@ public class FilmController {
 		model.addAttribute("listFilm", listFilm);
 		model.addAttribute("size", listFilm.size());
 		model.addAttribute("listCategory", listCategory);
+		model.addAttribute("listCountry", listCountry);
+
 		return "categories";
 	}
 
@@ -581,8 +661,8 @@ public class FilmController {
 		}
 		film.setBelongedCategories(listCategory);
 		Film currentFilm = filmService.save(film);
-		FilmDetail filmDetail = new FilmDetail(1, filmRequest.getFurl(),
-				currentFilm.getRequestEmail(), 0, date, currentFilm);
+		FilmDetail filmDetail = new FilmDetail(1, filmRequest.getFurl(), currentFilm.getRequestEmail(), 0, date,
+				currentFilm);
 		filmDetailService.save(filmDetail);
 
 		List<Category> listCategory1 = categoryService.findAllCategory();
@@ -682,7 +762,8 @@ public class FilmController {
 		Film currentFilm = filmService.save(film);
 		int episodeCount = 1;
 		for (String furl : filmRequest.getListFilmUrl()) {
-			FilmDetail filmDetail = new FilmDetail(episodeCount++, furl, currentFilm.getRequestEmail(), 0, date, currentFilm);
+			FilmDetail filmDetail = new FilmDetail(episodeCount++, furl, currentFilm.getRequestEmail(), 0, date,
+					currentFilm);
 			filmDetail.setFdRequestTime(date);
 			filmDetailService.save(filmDetail);
 		}

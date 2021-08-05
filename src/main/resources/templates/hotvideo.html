@@ -15,6 +15,7 @@
 	type="text/css">
 <link rel="stylesheet" th:href="@{~/css/bootstrap.min.css}">
 <link rel="stylesheet" th:href="@{~/css/style.css}">
+<link rel="stylesheet" th:href="@{~/fontawesome/css/all.min.css}">
 </head>
 <body>
 	<div id="site-content">
@@ -23,41 +24,54 @@
 			<div class="container">
 				<div class="page">
 					<div class="breadcrumbs">
-						<a th:href="@{~/index}">Home</a> <span>Top View</span>
+						<span>TOP PHIM HAY</span>
 					</div>
 
 					<div class="movie-list">
-						<div class="movie" th:each="film,filmStat : ${listFilm}"
-							th:if="${film.fdeploy == 1 and filmStat.index >= (currentPage - 1) * maxItem and filmStat.index < currentPage * maxItem}">
-							<figure class="movie-poster">
-								<a th:href="@{~/review/{id}(id=${film.fid})}"><img
-									th:src="@{~/image/{imageurl}(imageurl=${film.fimageurl})}"
-									th:alt="${film.fname}"
-									style="max-height: 350px; min-height: 350px"></a>
-							</figure>
-							<div class="movie-title">
-								<a th:href="@{~/review/{id}(id=${film.fid})}"
-									th:text="${film.fname}"></a>
-							</div>
-							<div class="movie-title">
-								<a th:href="@{~/review/{id}(id=${film.fid})}"
-									th:text="${film.length}"></a>
+
+						<!-- list film -->
+						<div class="film-action">
+							<div class="row">
+								<div class="row " style="margin-top: 15px;">
+									<div class="list-film-action col-md-3 col-xs-6"
+										style="max-width: 195px" th:each="film,filmStat : ${listFilm}"
+										th:if="${film.fdeploy == 1 and filmStat.index >= (currentPage - 1) * maxItem and filmStat.index < currentPage * maxItem}">
+										<div class="item-film-action"
+											style="margin: 0 5px; margin-bottom: 10px;">
+											<a class="item" th:href="@{~/review/{id}(id=${film.fid})}">
+												<img class="img-film"
+												th:src="@{~/image/{imageurl}(imageurl=${film.fbanner})}"
+												alt="item-film-action">
+												<h4>HD-Vietsub</h4>
+												<div class="description">
+													<h3 th:text="${film.fname}"></h3>
+													<h5 th:text="${film.length}"></h5>
+													<h5 th:text="${film.country.coname}"></h5>
+												</div>
+												<div class="item-bottom"></div>
+											</a>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
-									<!--pagination  -->
-						<div class="pagination d-flex justify-content-center"
-							th:if="${pageCount != 0}">
-							<a th:href="@{~/hotvideo/{page}(page=${currentPage - 1})}"
-								class="page-number prev"><i class="fa fa-angle-left"></i></a> <span
-								th:each="page : ${pages}"> <span
-								th:if="${page == currentPage}"> <a
-									class="page-number current" th:utext="${page}"></a>
-							</span> <span th:unless="${page == currentPage}"> <a
-									class="page-number" th:utext="${page}"
-									th:href="@{~/hotvideo/{page}(page=${page})}"></a>
-							</span>
-							</span> <a th:href="@{~/hotvideo/{page}(page=${currentPage + 1})}"
-								class="page-number next"><i class="fa fa-angle-right"></i></a>
+
+
+						<!--pagination  -->
+						<div class="d-flex justify-content-center">
+							<div class="pagination " th:if="${pageCount != 0}">
+								<a th:href="@{~/hotvideo/{page}(page=${currentPage - 1})}"
+									class="page-number prev" style="margin-left: 15px;"><i class="fa fa-angle-left"></i></a> <span
+									th:each="page : ${pages}"> <span
+									th:if="${page == currentPage}"> <a
+										class="page-number current" th:utext="${page}" ></a>
+								</span> <span th:unless="${page == currentPage}"> <a 
+										class="page-number" th:utext="${page}"
+										th:href="@{~/hotvideo/{page}(page=${page})}"></a>
+								</span>
+								</span> <a th:href="@{~/hotvideo/{page}(page=${currentPage + 1})}"
+									class="page-number next" style="margin-right: 15px;"><i class="fa fa-angle-right"></i></a>
+							</div>
 						</div>
 					</div>
 				</div>

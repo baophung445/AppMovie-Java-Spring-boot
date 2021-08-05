@@ -12,10 +12,10 @@
 <script th:src="@{~/js/bootstrap.js}"></script>
 <link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|"
 	rel="stylesheet" type="text/css">
-<link th:href="@{~/fonts/font-awesome.min.css}" rel="stylesheet"
-	type="text/css">
+
 <link rel="stylesheet" th:href="@{~/css/bootstrap.min.css}">
 <link rel="stylesheet" th:href="@{~/css/style.css}">
+<link rel="stylesheet" th:href="@{~/fontawesome/css/all.min.css}">
 </head>
 <body>
 	<header class="site-header">
@@ -41,14 +41,14 @@
 					<i class="fa fa-bars"></i>
 				</button> 
 
-				<ul class="menu">
-					<li class="menu-item" id="home"><a href="/">Trang chủ</a></li>
-					<li class="menu-item" id="topview"><a th:href="@{/hotvideo}">Top
-							phim xem nhiều</a></li>
+				<ul class="menu" style="transform: translateX(-29px);">
+					<li class="menu-item" id="home"><a href="/"><i class="fas fa-home" style="margin-right: 5px"></i>Trang chủ</a></li>
+					
 					<li class="menu-item" id="category"><a
-						th:href="@{/categories/ALL/ALL}">Thể loại</a></li>
+						th:href="@{/categories/ALL/ALL}"><i class="fas fa-folder" style="margin-right: 5px"></i>Thể loại</a></li>
 					<li class="menu-item" id="country"><a
-						th:href="@{/countries/ALL}">Quốc gia</a></li>
+						th:href="@{/countries/ALL}"> <i class="fas fa-globe-asia" style="margin-right: 5px"></i>Quốc gia</a></li>
+					
 					<li class="menu-item" id="requestManager"
 						sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')"><a
 						th:href="@{/request-manager/1}">Quản lí yêu cầu</a></li>
@@ -66,6 +66,7 @@
 					<li class="menu-item" id="signin"><a th:href="@{/login}"
 						sec:authorize="!hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')">Đăng
 							nhập</a></li>
+					
 					<li class="menu-item" id="sginout"
 						sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')"><a
 						th:href="@{/logout}">Sign Out</a></li>

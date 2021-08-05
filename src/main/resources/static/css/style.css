@@ -461,13 +461,23 @@ form textarea {
 
 .breadcrumbs {
 	padding-bottom: 20px;
-	margin-bottom: 30px;
-	border-bottom: 1px solid #ebebeb;
+	
+	
 }
 
 .breadcrumbs a {
 	font-weight: 400;
-	color: #9ea1a6;
+	font: 30px/40px 'UTMCafetaRegular';
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 400;
+    display: inline-block;
+    height: 40px;
+    line-height: 47px;
+    color: #dacb46;
+    border-radius: 3px 3px 0 0;
+    box-shadow: darkgreen;
+    transform: translateX(-20px);
 }
 
 .breadcrumbs a:after {
@@ -484,7 +494,18 @@ form textarea {
 }
 
 .breadcrumbs span {
-	color: #84878d;
+	font-weight: 400;
+	font: 30px/40px 'UTMCafetaRegular';
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 400;
+    display: inline-block;
+    height: 40px;
+    line-height: 47px;
+    color: #dacb46;
+    border-radius: 3px 3px 0 0;
+    box-shadow: darkgreen;
+    transform: translateX(-20px);
 }
 
 ul.arrow {
@@ -1948,25 +1969,32 @@ ul.arrow li a:hover {
 .pagination {
 	clear: both;
 	text-align: center;
+	display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 5rem;
+  margin: 3rem;
+  border-radius: 0.6rem;
+  background: #ffffff;
+  box-shadow: 0 0.8rem 2rem rgba(#5a6181, 0.05);
 }
 
 .pagination .page-number {
 	display: inline-block;
-	width: 40px;
-	height: 40px;
-	border-radius: 5px;
-	background: #e7e7e7;
-	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-	line-height: 2.6;
-	color: #84878d;
-	font-size: 15px;
-	font-size: 1em;
-	-webkit-transition: .3s ease;
-	transition: .3s ease;
+    width: 30px;
+    height: 30px;
+    border-radius: 5px;
+    line-height: 1.9;
+    color: #84878d;
+    font-size: 15px;
+    font-size: 1em;
+    -webkit-transition: .3s ease;
+    transition: .3s ease;
+    margin: 0px 5px;
 }
 
 .pagination .page-number.current, .pagination .page-number:hover {
-	background: #ffaa3c;
+	background: #23adad;
 	color: white;
 }
 
@@ -2633,6 +2661,30 @@ div, label {
 	border-radius: 3px 3px 0 0;
 }
 
+.film-action  .movie-title {
+	display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.film-action  .movie-title .film-all {
+	display: inline-block;
+    padding: 15px 12px 0 0;
+    color: #ddd;
+    font-size: 14px;
+    cursor: pointer;
+    transform: translateX(-60px);
+}
+
+.film-action  .movie-title .film-all span{
+	margin-right:5px;
+}
+
+.film-action  .movie-title .film-all span:hover{
+	color: #f78144;
+	margin-right:10px;
+}
+
 .film-action .list-film-action .item-film-action {
 	width: 180px;
 	height: 270px;
@@ -2735,6 +2787,25 @@ div, label {
 /* End custom film item */
 
 /* Top film */
+
+
+.top-film .film-all{
+	display: inline-block;
+    margin-top: 5px;
+    color: #ddd;
+    font-size: 14px;
+    cursor: pointer;
+    font-weight: 300;
+}
+
+.top-film .film-all span{
+	margin-right: 5px;
+}
+
+.top-film .film-all span:hover{
+	color: #f78144;
+    margin-right: 7px;
+}
 .top-film .item-film-action {
 	width: 250px !important;
 	height: 150px !important;

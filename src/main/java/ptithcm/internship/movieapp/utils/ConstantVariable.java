@@ -5,7 +5,7 @@ public class ConstantVariable {
 	public static final String BANNER_DEFAULT_URL = "default_banner.jpg";
 	public static final String SIMPLE_DATE_FORMAT = "yyyy-MM-dd hh:mm:ss";
 	
-	public static final int MAX_ITEMS = 8;
+	public static final int MAX_ITEMS = 6;
 	public static final int MAX_ITEMS_MANAGER = 10;
 	public static final int TOP_ITEMS = 40;
 	public static final int DEFAULT_COMMENT = 10;

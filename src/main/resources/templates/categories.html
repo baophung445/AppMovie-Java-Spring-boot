@@ -25,12 +25,10 @@
 		<main class="main-content">
 			<div class="container">
 				<div class="page">
-					<div class="breadcrumbs">
-						<a href="index">Home</a> <span>Category</span>
-					</div>
+					
 
 					<div class="filters" style="display: flex;">
-						<!-- Thể loại  -->
+						<!-- Thể loại -->
 						<div style="position: relative">
 							<h3 style="font-weight: 700; font-size: 16px;">Thể loại</h3>
 							<select name="#" id="selectCategories">
@@ -52,7 +50,7 @@
 						</div>
 
 						<!-- Quốc gia -->
-						<div style="position: relative">
+						<!-- <div style="position: relative">
 							<h3 style="font-weight: 700; font-size: 16px;">Quốc gia</h3>
 							<select name="#" id="selectCountries">
 								<option th:value="ALL" th:utext="All" th:selected="true"></option>
@@ -60,29 +58,44 @@
 									th:value="${country.coid}" th:utext="${country.coname}">
 							</select> <i class="fas fa-angle-down"
 								style="position: absolute; right: 23px; bottom: 12px;"></i>
-						</div>
+						</div> -->
 
 
 					</div>
 
 					<!--  listfim -->
-					<div class="movie-list">
-						<div class="movie" th:each="film,filmStat : ${listFilm}"
-							th:if="${film.fdeploy == 1 and filmStat.index >= (currentPage - 1) * maxItem and filmStat.index < currentPage * maxItem}">
-							<figure class="movie-poster">
-								<a th:href="@{~/review/{id}(id=${film.fid})}"><img
-									th:src="@{~/image/{imageurl}(imageurl=${film.fimageurl})}"
-									th:alt="${film.fname}"
-									style="max-height: 350px; min-height: 350px"></a>
-							</figure>
-							<div class="movie-title">
-								<a th:href="@{~/review/{id}(id=${film.fid})}"
-									th:text="${film.fname}"></a>
+					<div class="film-action">
+						<div class="row">
+							<div class="row " style="margin-top: 15px;">
+								<div class="list-film-action col-md-3 col-xs-6"
+									style="max-width: 195px" th:each="film,filmStat : ${listFilm}"
+									th:if="${film.fdeploy == 1 and filmStat.index >= (currentPage - 1) * maxItem and filmStat.index < currentPage * maxItem}">
+									<div class="item-film-action"
+										style="margin: 0 5px; margin-bottom: 10px;">
+										<a class="item" th:href="@{~/review/{id}(id=${film.fid})}">
+											<img class="img-film"
+											th:src="@{~/image/{imageurl}(imageurl=${film.fbanner})}"
+											alt="item-film-action">
+											<h4>HD-Vietsub</h4>
+											<div class="description">
+												<h3 th:text="${film.fname}"></h3>
+												<h5 th:text="${film.length}"></h5>
+												<h5 th:text="${film.country.coname}"></h5>
+											</div>
+											<div class="item-bottom"></div>
+										</a>
+									</div>
+								</div>
 							</div>
 						</div>
+					</div>
 
-						<!--  pagination -->
-						<!-- <div class="pagination d-flex justify-content-center"
+
+
+
+					<!--  pagination -->
+					<div class="d-flex justify-content-center" style="width: 100%;">
+						<div class="pagination d-flex justify-content-center"
 							th:if="${pageCount != 0}">
 							<a
 								th:href="@{~/categories/{cid}/{year}/{page}(page=${currentPage - 1}, cid=${cid}, year=${fyear})}"
@@ -97,13 +110,18 @@
 							</span> <a
 								th:href="@{~/categories/{cid}/{year}/{page}(page=${currentPage + 1}, cid=${cid}, year=${fyear})}"
 								class="page-number next"><i class="fa fa-angle-right"></i></a>
-						</div> -->
+						</div>
 					</div>
+
+
 				</div>
+
+
+
 				<input type="hidden" id="cid" name="modelAttr" th:value="${cid}" />
 				<input type="hidden" id="fyear" name="modelAttr" th:value="${fyear}" />
 
-				<input type="hidden" id="coid" name="modelAttr" th:value="${coid}"/>
+				<!-- <input type="hidden" id="coid" name="modelAttr" th:value="${coid}" /> -->
 			</div>
 			<!-- .container -->
 		</main>
@@ -122,37 +140,41 @@
 			var selectedYears = $('#fyear').val();
 			$('#selectYears').val(selectedYears);
 
-		 	$('#country').addClass('current-menu-item');
+			/* $('#country').addClass('current-menu-item'); */
 
-			var selectedCountry = $('#coid').val();
-			$('#selectCountries').val(selectedCountry); 
+			/* var selectedCountry = $('#coid').val();
+			$('#selectCountries').val(selectedCountry); */
 
 		});
 
-		$('#selectCategories').change(function() {
-			var value = $(this).val();
-			var selectedYears = $('#fyear').val();
-			console.log('thê loại', value)
-			/* window.location.replace('/categories/' + value + '/'
-					+ selectedYears); */
-		});
+		$('#selectCategories').change(
+				function() {
+					var value = $(this).val();
+					var selectedYears = $('#fyear').val();
+					console.log('thê loại', value)
+					window.location.replace('/categories/' + value + '/'
+							+ selectedYears);
+				});
 
-		$('#selectYears').change(function() {
-			var value = $(this).val();
-			var selectedCategory = $('#cid').val();
-			console.log('năm', value)
-			/* window.location.replace('/categories/' + selectedCategory
-					+ '/' + value); */
-		});
+		$('#selectYears').change(
+				function() {
+					var value = $(this).val();
+					var selectedCategory = $('#cid').val();
+					console.log('năm', value)
+					window.location.replace('/categories/' + selectedCategory
+							+ '/' + value);
+				});
 
-		 $('#selectCountries').change(function() {
-			var value = $(this).val();
-			console.log('quốc gia', value)
-			var selectedYears = $('#fyear').val();
-			var selectedCategory = $('#cid').val();
+		/* $('#selectCountries').change(
+				function() {
+					var value = $(this).val();
+					console.log('quốc gia', value)
+					var selectedYears = $('#fyear').val();
+					var selectedCategory = $('#cid').val();
 
-			window.location.replace('/categories/' + selectedCategory + '/' + selectedYears + '/' +  value); 
-		}); 
+					window.location.replace('/categories/' + selectedCategory
+							+ '/' + selectedYears + '/' + value);
+				}); */
 	</script>
 
 </body>

@@ -70,7 +70,7 @@ $(document)
 															.stringify(userObject),
 													success : function(result) {
 														if (result != null) {
-															alert("Rquest OK!");
+															alert("Bạn đã tạo User thành công!");
 															window.location.replace('');
 														}
 														return result;

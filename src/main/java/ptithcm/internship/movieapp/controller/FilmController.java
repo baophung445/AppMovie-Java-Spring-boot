@@ -229,75 +229,55 @@ public class FilmController {
 	}
 
 //	Phần filter : thể loại + năm + quốc gia
-	  @RequestMapping("/categories/{cid}/{year}/{country}") public String
-	 getCategoryPageByAll(Model model, @PathVariable("cid") String cid,
-	  
-	  @PathVariable("year") String year , @PathVariable("coid") String coid)
-	  {
-	  
-	  List<Film> listFilm = filmService.findAllFilm();
-	  
-		/* if (cid.equals("ALL") && year.equals("ALL") && country.equals("ALL") ) */
-	  
-//		  listFilm = ;  
-	  
-	  
-	  if (listFilm.size() == 0 || listFilm.isEmpty()) {
-			listFilm.add(new Film());
-		} else {
-			String newName = "";
-			for (Film f : listFilm) {
-				if (f.getFname().length() > ConstantVariable.MAX_FILM_NAME_LENGTH) {
-					newName = f.getFname().substring(0, ConstantVariable.MAX_FILM_NAME_LENGTH) + "...";
-					f.setFname(newName);
-				}
-			}
-		}
-	  
-	  List<Category> listCategory = categoryService.findAllCategory();
-		List<Film> listAll = filmService.findAllFilm();
+	/*
+	 * @RequestMapping("/categories/{cid}/{year}/{country}") public String
+	 * getCategoryPageByAll(Model model, @PathVariable("cid") String cid,
+	 * 
+	 * @PathVariable("year") String year , @PathVariable("coid") String coid) {
+	 * 
+	 * List<Film> listFilm = filmService.findAllFilm();
+	 * 
+	 * if (cid.equals("ALL") && year.equals("ALL") && country.equals("ALL") )
+	 * 
+	 * // listFilm = ;
+	 * 
+	 * 
+	 * if (listFilm.size() == 0 || listFilm.isEmpty()) { listFilm.add(new Film()); }
+	 * else { String newName = ""; for (Film f : listFilm) { if
+	 * (f.getFname().length() > ConstantVariable.MAX_FILM_NAME_LENGTH) { newName =
+	 * f.getFname().substring(0, ConstantVariable.MAX_FILM_NAME_LENGTH) + "...";
+	 * f.setFname(newName); } } }
+	 * 
+	 * List<Category> listCategory = categoryService.findAllCategory(); List<Film>
+	 * listAll = filmService.findAllFilm();
+	 * 
+	 * Comparator<Integer> cmp = new YearComparator(); Set<Integer> list = new
+	 * HashSet<Integer>(); for (Film film : listAll) { list.add(film.getFyear()); }
+	 * List<Integer> listYear = new ArrayList<Integer>(); for (Integer y : list) {
+	 * listYear.add(y); } Collections.sort(listYear, cmp);
+	 * 
+	 * int pageCount = (int) Math.ceil(listFilm.size() / (ConstantVariable.MAX_ITEMS
+	 * * 1d)); int currentPage = 1; List<Integer> pages = new ArrayList<Integer>();
+	 * for (int i = 1; i <= pageCount; i++) { pages.add(i); }
+	 * 
+	 * List<Country> listCountry = countryService.findAllCountry();
+	 * 
+	 * model.addAttribute("pages", pages); model.addAttribute("pageCount",
+	 * pageCount); model.addAttribute("maxItem", ConstantVariable.MAX_ITEMS);
+	 * model.addAttribute("currentPage", currentPage); model.addAttribute("cid",
+	 * cid); model.addAttribute("fyear", year); model.addAttribute("coid", coid);
+	 * model.addAttribute("listYear", listYear); model.addAttribute("listFilm",
+	 * listFilm); model.addAttribute("size", listFilm.size());
+	 * model.addAttribute("listCategory", listCategory);
+	 * model.addAttribute("listCountry", listCountry);
+	 * 
+	 * return "categories";
+	 * 
+	 * }
+	 */
 
-		Comparator<Integer> cmp = new YearComparator();
-		Set<Integer> list = new HashSet<Integer>();
-		for (Film film : listAll) {
-			list.add(film.getFyear());
-		}
-		List<Integer> listYear = new ArrayList<Integer>();
-		for (Integer y : list) {
-			listYear.add(y);
-		}
-		Collections.sort(listYear, cmp);
-
-		int pageCount = (int) Math.ceil(listFilm.size() / (ConstantVariable.MAX_ITEMS * 1d));
-		int currentPage = 1;
-		List<Integer> pages = new ArrayList<Integer>();
-		for (int i = 1; i <= pageCount; i++) {
-			pages.add(i);
-		}
-
-		List<Country> listCountry = countryService.findAllCountry();
-
-		model.addAttribute("pages", pages);
-		model.addAttribute("pageCount", pageCount);
-		model.addAttribute("maxItem", ConstantVariable.MAX_ITEMS);
-		model.addAttribute("currentPage", currentPage);
-		model.addAttribute("cid", cid);
-		model.addAttribute("fyear", year);
-		model.addAttribute("coid", coid);
-		model.addAttribute("listYear", listYear);
-		model.addAttribute("listFilm", listFilm);
-		model.addAttribute("size", listFilm.size());
-		model.addAttribute("listCategory", listCategory);
-		model.addAttribute("listCountry", listCountry);
-		
-		return "categories";
-	  
-	  }
-	  
-	  
 //	  
 //	  
-	 
 
 	@RequestMapping("/categories/{cid}/{year}")
 	public String getCategoryPageByCid(Model model, @PathVariable("cid") String cid,
@@ -576,6 +556,10 @@ public class FilmController {
 
 		model.addAttribute("newFilmRequest", new FilmRequest());
 		model.addAttribute("listCatagory", listCategory);
+		
+		
+		
+		
 		model.addAttribute("listCountry", listCountry);
 		return "add_new_video";
 	}

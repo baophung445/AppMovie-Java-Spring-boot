@@ -1,4 +1,7 @@
 $(document).ready(function() {
+	
+	
+	
 	$('#addfilm').addClass('current-menu-item');
 	$('#urlRaw').change(function() {
 		var rawUrl = $('#urlRaw').val();

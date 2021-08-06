@@ -461,23 +461,21 @@ form textarea {
 
 .breadcrumbs {
 	padding-bottom: 20px;
-	
-	
 }
 
 .breadcrumbs a {
 	font-weight: 400;
 	font: 30px/40px 'UTMCafetaRegular';
-    text-transform: uppercase;
-    font-size: 20px;
-    font-weight: 400;
-    display: inline-block;
-    height: 40px;
-    line-height: 47px;
-    color: #dacb46;
-    border-radius: 3px 3px 0 0;
-    box-shadow: darkgreen;
-    transform: translateX(-20px);
+	text-transform: uppercase;
+	font-size: 20px;
+	font-weight: 400;
+	display: inline-block;
+	height: 40px;
+	line-height: 47px;
+	color: #dacb46;
+	border-radius: 3px 3px 0 0;
+	box-shadow: darkgreen;
+	transform: translateX(-20px);
 }
 
 .breadcrumbs a:after {
@@ -496,16 +494,16 @@ form textarea {
 .breadcrumbs span {
 	font-weight: 400;
 	font: 30px/40px 'UTMCafetaRegular';
-    text-transform: uppercase;
-    font-size: 20px;
-    font-weight: 400;
-    display: inline-block;
-    height: 40px;
-    line-height: 47px;
-    color: #dacb46;
-    border-radius: 3px 3px 0 0;
-    box-shadow: darkgreen;
-    transform: translateX(-20px);
+	text-transform: uppercase;
+	font-size: 20px;
+	font-weight: 400;
+	display: inline-block;
+	height: 40px;
+	line-height: 47px;
+	color: #dacb46;
+	border-radius: 3px 3px 0 0;
+	box-shadow: darkgreen;
+	transform: translateX(-20px);
 }
 
 ul.arrow {
@@ -1368,7 +1366,6 @@ ul.arrow li a:hover {
 	}
 }
 
-@
 -ms-viewport {
 	width: device-width;
 }
@@ -1970,27 +1967,28 @@ ul.arrow li a:hover {
 	clear: both;
 	text-align: center;
 	display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 5rem;
-  margin: 3rem;
-  border-radius: 0.6rem;
-  background: #ffffff;
-  box-shadow: 0 0.8rem 2rem rgba(#5a6181, 0.05);
+	justify-content: center;
+	align-items: center;
+	height: 5rem;
+	margin: 3rem;
+	border-radius: 0.6rem;
+	background: #ffffff;
+	box-shadow: 0 0.8rem 2rem rgba(#5a6181, 0.05);
 }
 
 .pagination .page-number {
 	display: inline-block;
-    width: 30px;
-    height: 30px;
-    border-radius: 5px;
-    line-height: 1.9;
-    color: #84878d;
-    font-size: 15px;
-    font-size: 1em;
-    -webkit-transition: .3s ease;
-    transition: .3s ease;
-    margin: 0px 5px;
+	width: 30px;
+	height: 30px;
+	border-radius: 5px;
+	line-height: 1.9;
+	color: #84878d;
+	font-size: 15px;
+	font-size: 1em;
+	-webkit-transition: .3s ease;
+	transition: .3s ease;
+	margin: 0px 5px;
+	font-weight: initial;
 }
 
 .pagination .page-number.current, .pagination .page-number:hover {
@@ -2663,26 +2661,26 @@ div, label {
 
 .film-action  .movie-title {
 	display: flex;
-    align-items: center;
-    justify-content: space-between;
+	align-items: center;
+	justify-content: space-between;
 }
 
 .film-action  .movie-title .film-all {
 	display: inline-block;
-    padding: 15px 12px 0 0;
-    color: #ddd;
-    font-size: 14px;
-    cursor: pointer;
-    transform: translateX(-60px);
+	padding: 15px 12px 0 0;
+	color: #ddd;
+	font-size: 14px;
+	cursor: pointer;
+	transform: translateX(-60px);
 }
 
-.film-action  .movie-title .film-all span{
-	margin-right:5px;
+.film-action  .movie-title .film-all span {
+	margin-right: 5px;
 }
 
-.film-action  .movie-title .film-all span:hover{
+.film-action  .movie-title .film-all span:hover {
 	color: #f78144;
-	margin-right:10px;
+	margin-right: 10px;
 }
 
 .film-action .list-film-action .item-film-action {
@@ -2787,25 +2785,24 @@ div, label {
 /* End custom film item */
 
 /* Top film */
-
-
-.top-film .film-all{
+.top-film .film-all {
 	display: inline-block;
-    margin-top: 5px;
-    color: #ddd;
-    font-size: 14px;
-    cursor: pointer;
-    font-weight: 300;
+	margin-top: 5px;
+	color: #ddd;
+	font-size: 14px;
+	cursor: pointer;
+	font-weight: 300;
 }
 
-.top-film .film-all span{
+.top-film .film-all span {
 	margin-right: 5px;
 }
 
-.top-film .film-all span:hover{
+.top-film .film-all span:hover {
 	color: #f78144;
-    margin-right: 7px;
+	margin-right: 7px;
 }
+
 .top-film .item-film-action {
 	width: 250px !important;
 	height: 150px !important;
@@ -2898,15 +2895,14 @@ div, label {
 
 .top-film .title {
 	font: 25px/25px 'UTMCafetaRegular';
-    color: #dacb46;
-    text-shadow: 1px 1px 1px #1a1a1a;
-    text-transform: uppercase;
-    height: 32px;
-    font-size: 25px;
+	color: #dacb46;
+	text-shadow: 1px 1px 1px #1a1a1a;
+	text-transform: uppercase;
+	height: 32px;
+	font-size: 25px;
 }
 
 /* Hover color yellow */
-
 .list-film-action .item:hover {
 	opacity: 0.8;
 }
@@ -2915,10 +2911,50 @@ div, label {
 	color: #dacb46 !important;
 }
 
-.list-film-three .item-film:hover .hover-change{
-	 color: #dacb46 !important;
+.list-film-three .item-film:hover .hover-change {
+	color: #dacb46 !important;
 }
 
 .list-film-three .item-film:hover img {
 	opacity: 0.8;
+}
+
+/* Login form */
+.login-form .form-group {
+	display: flex;
+	height: 52px;
+}
+
+.login-form .form-group label {
+	padding: 1rem;
+	padding-left: 2rem;
+	padding-right: 2rem;
+	border-radius: 5px;
+	background: #363b41;
+	border-bottom-right-radius: 0;
+	border-top-right-radius: 0;
+	align-items: center;
+	display: flex;
+	justify-content: center;
+	
+}
+
+.login-form .form-group .form-s {
+	height: 100%;
+	width: 100%;
+	border-bottom-left-radius: 0;
+    border-top-left-radius: 0;
+    background: #3b4148;
+    border: 1px solid #363b41;
+}
+
+.login-form  .btn-login{
+	width: 100%;
+    height: 52px;
+	margin-top: 20px;
+}
+
+.add-video .form-control{
+	background-color: unset;
+	border: 1px solid #555;
 }

@@ -1,73 +1,148 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
-	<title th:text="${web.wname}"></title>
-	
-	<script th:src="@{~/js/jquery-1.11.1.min.js}"></script>
-	<script th:src="@{~/js/bootstrap.js}"></script>
-	<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
-	<link th:href="@{~/fonts/font-awesome.min.css}" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" th:href="@{~/css/bootstrap.min.css}">
-	<link rel="stylesheet" th:href="@{~/css/style.css}">
-	<link rel="stylesheet" th:href="@{~/fontawesome/css/all.min.css}">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0,maximum-scale=1">
+<title th:text="${web.wname}"></title>
+
+<script th:src="@{~/js/jquery-1.11.1.min.js}"></script>
+<script th:src="@{~/js/bootstrap.js}"></script>
+<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|"
+	rel="stylesheet" type="text/css">
+<link th:href="@{~/fonts/font-awesome.min.css}" rel="stylesheet"
+	type="text/css">
+ <link rel="stylesheet" th:href="@{~/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{~/css/style.css}">
+<link rel="stylesheet" th:href="@{~/fontawesome/css/all.min.css}">
+<link rel="stylesheet" th:href="@{~/fontawesome/css/all.min.css}">
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
 </head>
 <body>
 	<div id="site-content">
 		<header th:replace="~{./navigation_bar_layout :: header}"></header>
-		<main class="main-content">	
+		<main class="main-content">
 			<div class="container">
-				<div class="page">
-					<div class="breadcrumbs">
-						<a th:href="@{/index}">Home</a>
-					<!-- 	<span th:text="${film.fname}"></span> -->
-					</div>
-				</div>
-				<h2>Request Video Form</h2>
-				<select class="form-control" id="selectForm">
-    				<option value="0" selected="selected">Video</option>
-    				<option value="1">Group Video</option>
-    			</select>
-    			<br><hr><br>
-				<div class="Add content form-group" id="myform">
-					<form th:action="@{/add-new-video}" method="post" th:object="${newFilmRequest}" enctype="multipart/form-data">
-						<input type="text" name="requestEmail" placeholder="Email to contact" class="form-control" id="requestEmail"><br>
-						<input type="text" name="fname" placeholder="Video name" class="form-control" required="required"/><br>
-						<input type="text" placeholder="Url" id="urlRaw" class="form-control" required="required"/><br>
-    					<input type="hidden" name="furl" placeholder="Url" id="url"/>
-    					<input type="text" name="introduction" placeholder="Introduction" class="form-control" required="required"/><br>
-    					<input type="text" name="length" placeholder="Length" class="form-control" required="required"/><br>
-    					<!-- <input type="text" name="fepisodecount" placeholder="Episode count" class="form-control" required="required"/><br> -->
-    					<input type="text" name="fyear" placeholder="Year" class="form-control" required="required"/><br>
-    					<br>
-    					<select th:field="*{country_id}" class="form-control" required="required">
-                         	<option value=""> Chosen Country </option>
-                         	<option th:each="country : ${listCountry}"
-                                 th:value="${country.coid}"
-                                 th:utext="${country.coname}">
-                         	</option>
-                  		</select>
-                  		<br>
-                  		<div>Categories:</div>
-                  		<br>
-                  		<div class="form-check">
-                  			<div th:each="category,status : ${listCatagory}" class="form-check-inline">
-                  				<input type="checkbox" th:value="${category.cid}" th:id="'cbCategory' + ${status.index}" name="list_category_id" class="form-check-input">
-    							<label class="form-check-label min-witdth" th:for="'cbCategory' + ${status.index}" th:text="${category.cname}"></label>
-    						</div>
-    					</div>
-    					<br>
-    					<div>
-    						Banner: <input th:field="*{upload.fileDatas}" type="file" class="form-control"/><br />      
-         					Image: <input th:field="*{upload.fileDatas}" type="file" class="form-control"/><br />  
-         				</div>  
-         				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> 
-    					<button type="submit" class="btn btn-primary" id="btnCommit">Commit Video</button>
+
+				<h2
+					style="text-transform: uppercase; font-size: 16px; margin: 0 0 7px 0; font-family: 'roboto'; color: #dedede; font-weight: bold; margin-bottom: 20px; display: flex;">
+					<i class="fab fa-youtube" style="margin-right: 7px;"></i> Thêm phim
+					mới
+				</h2>
+				<select class="form-control" id="selectForm"
+					style="background-color: unset; color: unset">
+					<option value="0" selected="selected">Video</option>
+					<option value="1">Group Video</option>
+				</select> <br>
+				<hr>
+				<br>
+				<div class="Add content form-group add-video" id="myform">
+					<form th:action="@{/add-new-video}" method="post"
+						th:object="${newFilmRequest}" enctype="multipart/form-data">
+						<div class="row">
+							<div class="col-md-6 col-sx-12">
+								<input type="text" name="fname" placeholder="Tên video "
+									class="form-control" required="required" /><br> <input
+									type="text" name="requestEmail" placeholder="Email "
+									class="form-control" id="requestEmail" required="required"><br>
+								<input type="text" placeholder="Url" id="urlRaw"
+									class="form-control" required="required" /><br> <input
+									type="hidden" name="furl" placeholder="Url" id="url" /> <input
+									type="text" name="introduction" placeholder="Giới thiệu"
+									class="form-control" required="required" /><br> <input
+									type="text" name="length" placeholder="Độ dài"
+									class="form-control" required="required" /><br>
+								<!-- <input type="text" name="fepisodecount" placeholder="Episode count" class="form-control" required="required"/><br> -->
+								<input type="text" name="fyear" placeholder="Năm sản xuất"
+									class="form-control" required="required" /><br>
+							</div>
+							<div class="col-md-6 col-sx-12">
+								<select th:field="*{country_id}" class="form-control"
+									required="required" style="color: unset">
+									<option value="">Quốc gia</option>
+									<option th:each="country : ${listCountry}"
+										th:value="${country.coid}" th:utext="${country.coname}">
+									</option>
+								</select> <br>
+								<div style="font-weight: 600;">Thể loại:</div>
+
+								<div class="form-check">
+									<div th:each="category,status : ${listCatagory}"
+										class="form-check-inline">
+
+										<input type="checkbox" th:value="${category.cid}"
+											th:id="'cbCategory' + ${status.index}"
+											name="list_category_id" class="form-check-input">
+
+										<th:block th:switch="${category.cname}">
+
+											<label style="font-weight: 500;"
+												class="form-check-label min-witdth"
+												th:for="'cbCategory' + ${status.index}" th:case="'Action'">
+												Hành động </label>
+											<label style="font-weight: 500;"
+												class="form-check-label min-witdth"
+												th:for="'cbCategory' + ${status.index}" th:case="'Comedy'">
+												Hài </label>
+											<label style="font-weight: 500;"
+												class="form-check-label min-witdth"
+												th:for="'cbCategory' + ${status.index}" th:case="'Cartoon'">
+												Hoạt hình </label>
+											<label style="font-weight: 500;"
+												class="form-check-label min-witdth"
+												th:for="'cbCategory' + ${status.index}" th:case="'Fantasy'">
+												Khoa học </label>
+											<label style="font-weight: 500;"
+												class="form-check-label min-witdth"
+												th:for="'cbCategory' + ${status.index}" th:case="'Horror'">
+												Kinh dị </label>
+											<label style="font-weight: 500;"
+												class="form-check-label min-witdth"
+												th:for="'cbCategory' + ${status.index}" th:case="'Other'">
+												Khác </label>
+											<label style="font-weight: 500;"
+												class="form-check-label min-witdth"
+												th:for="'cbCategory' + ${status.index}" th:case="'Romance'">
+												Tình cảm </label>
+											<label style="font-weight: 500;"
+												class="form-check-label min-witdth"
+												th:for="'cbCategory' + ${status.index}" th:case="'Sport'">
+												Thể thao </label>
+											<label style="font-weight: 500;"
+												class="form-check-label min-witdth"
+												th:for="'cbCategory' + ${status.index}" th:case="'Travel'">
+												Du lịch </label>
+
+										</th:block>
+
+									</div>
+								</div>
+								<br>
+								<div>
+									Banner: <input th:field="*{upload.fileDatas}" type="file"
+										style="color: unset" class="form-control" /><br /> Image: <input
+										style="color: unset" th:field="*{upload.fileDatas}"
+										type="file" class="form-control" /><br />
+								</div>
+								<input type="hidden" name="${_csrf.parameterName}"
+									value="${_csrf.token}" />
+							</div>
+						</div>
+
+
+						<button type="submit" class="btn btn-primary" id="btnCommit"
+							style="min-width: 80px;">Lưu</button>
 					</form>
 				</div>
+
 				<h2 th:utext="${message}"></h2>
+
+				<div class="alert alert-primary" role="alert" th:utext="${message}">
+					</div>
+
+
+
 			</div>
 		</main>
 		<footer th:replace="~{./footer_layout :: footer}"></footer>
@@ -75,5 +150,8 @@
 	<script th:src="@{~/js/plugins.js}"></script>
 	<script th:src="@{~/js/app.js}"></script>
 	<script th:src="@{~/js/add_new_video.js}"></script>
+	<!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script> -->
 </body>
 </html>

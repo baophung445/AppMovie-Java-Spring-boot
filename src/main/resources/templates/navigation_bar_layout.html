@@ -37,36 +37,44 @@
 			</div>
 
 			<div class="main-navigation row" style="margin-top: 20px;">
-				 <button type="button" class="menu-toggle">
+				<button type="button" class="menu-toggle">
 					<i class="fa fa-bars"></i>
-				</button> 
+				</button>
 
 				<ul class="menu" style="transform: translateX(-29px);">
-					<li class="menu-item" id="home"><a href="/"><i class="fas fa-home" style="margin-right: 5px"></i>Trang chủ</a></li>
-					
+					<li class="menu-item" id="home"><a href="/"><i
+							class="fas fa-home" style="margin-right: 5px"></i>Trang chủ</a></li>
+
 					<li class="menu-item" id="category"><a
-						th:href="@{/categories/ALL/ALL}"><i class="fas fa-folder" style="margin-right: 5px"></i>Thể loại</a></li>
+						th:href="@{/categories/ALL/ALL}"><i class="fas fa-folder"
+							style="margin-right: 5px"></i>Thể loại</a></li>
 					<li class="menu-item" id="country"><a
-						th:href="@{/countries/ALL}"> <i class="fas fa-globe-asia" style="margin-right: 5px"></i>Quốc gia</a></li>
+						th:href="@{/countries/ALL}"> <i class="fas fa-globe-asia"
+							style="margin-right: 5px"></i>Quốc gia
+					</a></li>
+
 					
-					<li class="menu-item" id="requestManager"
-						sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')"><a
-						th:href="@{/request-manager/1}">Quản lí yêu cầu</a></li>
-					<li class="menu-item" id="reportManager"
-						sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')"><a
-						th:href="@{/report-manager/1}">Quản lí report</a></li>
-					<li class="menu-item" id="adminFeature"
-						sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/admin}">Admin
-							Feature</a></li>
-					<li class="menu-item" id="videoManager"
-						sec:authorize="hasRole('ROLE_MEMBER') and !hasRole('ROLE_ADMIN')"><a
-						th:href="@{/video-manager?searchCondition=}">Video Manager</a></li>
+						<li class="menu-item" id="requestManager"
+							sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')"><a
+							th:href="@{/request-manager/1}">Quản lí yêu cầu</a></li>
+						<li class="menu-item" id="reportManager"
+							sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')"><a
+							th:href="@{/report-manager/1}">Quản lí report</a></li>
+						<li class="menu-item" id="adminFeature"
+							sec:authorize="hasRole('ROLE_ADMIN')"><a th:href="@{/admin}">Admin
+								Feature</a></li>
+						<li class="menu-item" id="videoManager"
+							sec:authorize="hasRole('ROLE_MEMBER') and !hasRole('ROLE_ADMIN')"><a
+							th:href="@{/video-manager?searchCondition=}">Video Manager</a></li>
+					
+
+
+
 					<li class="menu-item" id="addfilm"><a
 						th:href="@{/add-new-video}">Thêm phim</a></li>
 					<li class="menu-item" id="signin"><a th:href="@{/login}"
 						sec:authorize="!hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')">Đăng
 							nhập</a></li>
-					
 					<li class="menu-item" id="sginout"
 						sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_MEMBER')"><a
 						th:href="@{/logout}">Sign Out</a></li>

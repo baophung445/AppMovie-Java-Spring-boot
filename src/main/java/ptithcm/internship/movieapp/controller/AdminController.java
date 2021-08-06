@@ -422,7 +422,7 @@ public class AdminController {
 	 */
 
 	@RequestMapping("/videoManagerAdvance")
-	public String filmManagerAdvance(Model model, @RequestParam("searchCondition") String searchCondition) {
+	public String filmManagerAdvance(Model model, @RequestParam(name = "searchCondition", required = false) String searchCondition) {
 		LOGGER.info("filmManagerAdvance: ");
 
 		List<Film> listFilm;

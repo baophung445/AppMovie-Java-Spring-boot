@@ -15,29 +15,31 @@
 	<link th:href="@{~/fonts/font-awesome.min.css}" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" th:href="@{~/css/bootstrap.min.css}">
 	<link rel="stylesheet" th:href="@{~/css/style.css}">
+	<link rel="stylesheet" th:href="@{~/fontawesome/css/all.min.css}">
 </head>
 <body>
 	<div id="site-content">
 		<header th:replace="~{./navigation_bar_layout :: header}"></header>
 		<main class="main-content">	
 			<div class="container">
-				<div class="page">
+				<!-- <div class="page">
 					<div class="breadcrumbs">
 						<a th:href="@{/index}">Home</a>
 						<a th:href="@{/admin}">Admin</a>
 						<span>Account manager</span>
-						<!-- <span th:text="${film.fname}"></span> -->
+						<span th:text="${film.fname}"></span>
 					</div>
-				</div>
+				</div> -->
 				<div class="main-content form-group">
 					<input type="hidden" th:value="${webDomain}" id="webDomain">
 					<input type="hidden" value="" id="chosenIndex">
-        			<h2 class="float-left">Account Manager</h2>
+        			<h2 class="float-left title-admin ">Account Manager</h2>
         			<div class="btn btn-primary float-right" data-toggle="modal" data-target="#createModal">Create New Account</div>
-        			<table class="table table-striped" id="tableId">
+        			
+        			<table class="table  table-hover" id="tableId" style="color: black; background: white;">
   						<thead class="thead-dark">
     						<tr>
-      							<th scope="col">#</th>
+      							<th scope="col">STT</th>
       							<th scope="col">Email</th>
       							<th scope="col">User name</th>
       							<th></th>

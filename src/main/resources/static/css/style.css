@@ -2096,6 +2096,12 @@ div, label {
 	font-size: 20px;
 }
 
+.search-video-manager::placeholder{
+	font-size: 15px;
+	/* transform: translateY(5px); */
+	color: #333;
+}
+
 .my-search-button {
 	font-size: 22px;
 }
@@ -2957,4 +2963,20 @@ div, label {
 .add-video .form-control{
 	background-color: unset;
 	border: 1px solid #555;
+}
+
+.table-striped>tbody>tr:nth-of-type(odd){
+	/* background-color: unset ; */
+}
+
+.title-admin {
+	font: 30px/40px 'UTMCafetaRegular';
+    text-transform: uppercase;
+    font-size: 20px;
+    font-weight: 400;
+    display: inline-block;
+    height: 40px;
+    line-height: 47px;
+    color: #dacb46;
+    border-radius: 3px 3px 0 0;
 }

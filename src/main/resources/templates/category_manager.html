@@ -14,6 +14,7 @@
 	<link th:href="@{~/fonts/font-awesome.min.css}" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" th:href="@{~/css/bootstrap.min.css}">
 	<link rel="stylesheet" th:href="@{~/css/style.css}">
+	<link rel="stylesheet" th:href="@{~/fontawesome/css/all.min.css}">
 </head>
 <body>
 	<div id="site-content">
@@ -22,9 +23,9 @@
 			<div class="container">
 				<div class="page">
 					<div class="breadcrumbs">
-						<a th:href="@{/index}">Home</a>
+						
 						<a th:href="@{/admin}">Admin</a>
-						<span>Category manager</span>
+						
 						<!-- <span th:text="${film.fname}"></span> -->
 					</div>
 				</div>
@@ -33,7 +34,7 @@
 					<input type="hidden" value="" id="chosenIndex">
         			<h2 class="float-left">Category Manager</h2>
         			<div class="btn btn-primary float-right" data-toggle="modal" data-target="#createModal">Create New Category</div>
-        			<table class="table table-striped" id="tableId">
+        			<table class="table table-hover" id="tableId" style="color: black; background: white;">
   						<thead class="thead-dark">
     						<tr>
       							<th scope="col">#</th>

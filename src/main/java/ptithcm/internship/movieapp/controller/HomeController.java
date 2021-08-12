@@ -31,14 +31,14 @@ public class HomeController {
 
 	@Autowired
 	private WebService webService;
-	
+
 	@ModelAttribute("web")
-	public Web getWeb(){
-	    return webService.findByHasUse();
+	public Web getWeb() {
+		return webService.findByHasUse();
 	}
-	
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
-	
+
 	@RequestMapping("/")
 	public String getIndex(Model model) {
 		LOGGER.info("getIndex: ");
@@ -48,16 +48,21 @@ public class HomeController {
 		} else {
 			listFilm = listFilm.subList(0, ConstantVariable.TOP_FILM);
 		}
-		
+
 //		Phim hót nhất ở trang chủ
 		List<Film> Filmhot = filmService.findHotFilmsByView();
-		
+
+		Film film = Filmhot.get(0);
+
+		double rate = film.getFevaluatepoint() / film.getFevaluatecount();
+		rate = Math.round(rate * 2) / 2.0;
+
 // 		Phim hót thứ nhì
-		List<Film> filmTwo= Filmhot.subList(1, 2);
-		
+		List<Film> filmTwo = Filmhot.subList(1, 2);
+
 //		Ds phim hót ở trang chủ
 		List<Film> listTree = Filmhot.subList(2, 5);
-		
+
 		List<Film> listAction = filmService.findHotFilmsByCategoryId("AT", ConstantVariable.BANNER_DEFAULT_URL);
 		List<Film> listFantasy = filmService.findHotFilmsByCategoryId("FA", ConstantVariable.BANNER_DEFAULT_URL);
 		List<Film> listCartoon = filmService.findHotFilmsByCategoryId("CT", ConstantVariable.BANNER_DEFAULT_URL);
@@ -100,14 +105,15 @@ public class HomeController {
 		} else {
 			model.addAttribute("isComedy", false);
 		}
-		
+
 		model.addAttribute("listAction", listAction);
 		model.addAttribute("listFantasy", listFantasy);
 		model.addAttribute("listCartoon", listCartoon);
 		model.addAttribute("listHorror", listHorror);
 		model.addAttribute("listRomance", listRomance);
 		model.addAttribute("listComedy", listComedy);
-		
+		model.addAttribute("rate", rate);
+
 //		Phim hót nhất ở trang bìa
 		model.addAttribute("Filmhot", Filmhot);
 
@@ -115,9 +121,6 @@ public class HomeController {
 		model.addAttribute("filmTwo", filmTwo);
 //		ds phim hot nhất
 		model.addAttribute("listTree", listTree);
-		
-		
-		
 
 		model.addAttribute("listFilm", listFilm);
 		model.addAttribute("size", listFilm.size());
@@ -134,18 +137,20 @@ public class HomeController {
 		} else {
 			listFilm = listFilm.subList(0, ConstantVariable.TOP_FILM);
 		}
-		
+
 		List<Film> Filmhot = filmService.findHotFilmsByView();
-		
-		
+
+		Film film = Filmhot.get(0);
+
+		double rate = film.getFevaluatepoint() / film.getFevaluatecount();
+		rate = Math.round(rate * 2) / 2.0;
+
 //		Phim hót thứ nhì
-		List<Film> filmTwo= Filmhot.subList(1, 2);
-		
+		List<Film> filmTwo = Filmhot.subList(1, 2);
+
 //		Ds phim hót ở trang chủ
 		List<Film> listTree = Filmhot.subList(2, 5);
-		
-		
-		
+
 		List<Film> listAction = filmService.findHotFilmsByCategoryId("AT", ConstantVariable.BANNER_DEFAULT_URL);
 		List<Film> listFantasy = filmService.findHotFilmsByCategoryId("FA", ConstantVariable.BANNER_DEFAULT_URL);
 		List<Film> listCartoon = filmService.findHotFilmsByCategoryId("CT", ConstantVariable.BANNER_DEFAULT_URL);
@@ -195,9 +200,11 @@ public class HomeController {
 		model.addAttribute("listHorror", listHorror);
 		model.addAttribute("listRomance", listRomance);
 		model.addAttribute("listComedy", listComedy);
-		
+
 		model.addAttribute("Filmhot", Filmhot);
-		
+
+		model.addAttribute("rate", rate);
+
 //		phim hót nhì tính theo lượt view
 		model.addAttribute("filmTwo", filmTwo);
 //		ds phim hot nhất
@@ -214,20 +221,20 @@ public class HomeController {
 		LOGGER.info("getAccessDenied: ");
 		return "403";
 	}
-	
-	@GetMapping("/login") 
-    public String getLogin() {
+
+	@GetMapping("/login")
+	public String getLogin() {
 		LOGGER.info("getLogin: ");
-        return "login";
-    }
-	
+		return "login";
+	}
+
 	@GetMapping("/logout")
 	public String logout(HttpServletRequest request, HttpServletResponse response) {
 		LOGGER.info("logout: ");
-	    Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-	    if (auth != null) {
-	        new SecurityContextLogoutHandler().logout(request, response, auth);
-	    }
-	    return "redirect:/login";
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (auth != null) {
+			new SecurityContextLogoutHandler().logout(request, response, auth);
+		}
+		return "redirect:/login";
 	}
 }

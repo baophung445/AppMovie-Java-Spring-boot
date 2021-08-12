@@ -2096,7 +2096,7 @@ div, label {
 	font-size: 20px;
 }
 
-.search-video-manager::placeholder{
+.search-video-manager::placeholder {
 	font-size: 15px;
 	/* transform: translateY(5px); */
 	color: #333;
@@ -2598,6 +2598,16 @@ div, label {
 	background: linear-gradient(to left, #292e39, #795548);
 }
 
+.banner-header-filmhot .text-eclip {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	line-height: 25px;
+	-webkit-line-clamp: 3;
+	height: 75px;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+}
+
 .banner-header-filmhot .description h2 {
 	margin-top: 0px;
 	color: #FF9800;
@@ -2748,8 +2758,8 @@ div, label {
 
 .film-action .list-film-action .item-film-action h4 {
 	position: absolute;
-	top: -5px;
-	left: 9px;
+	top: 4px;
+	left: 13px;
 	color: #fff;
 	border-radius: 2px;
 	background: #a21d0a;
@@ -2810,8 +2820,8 @@ div, label {
 }
 
 .top-film .item-film-action {
-	width: 250px !important;
-	height: 150px !important;
+	width: 280px !important;
+	height: 170px !important;
 }
 
 .top-film .item-film-action h4 {
@@ -2895,7 +2905,7 @@ div, label {
 	padding: 7px;
 	background: #131313;
 	border-radius: 5px;
-	width: 263px;
+	width: 290px;
 	height: auto;
 }
 
@@ -2904,7 +2914,7 @@ div, label {
 	color: #dacb46;
 	text-shadow: 1px 1px 1px #1a1a1a;
 	text-transform: uppercase;
-	height: 32px;
+	height: 25px;
 	font-size: 25px;
 }
 
@@ -2942,41 +2952,140 @@ div, label {
 	align-items: center;
 	display: flex;
 	justify-content: center;
-	
 }
 
 .login-form .form-group .form-s {
 	height: 100%;
 	width: 100%;
 	border-bottom-left-radius: 0;
-    border-top-left-radius: 0;
-    background: #3b4148;
-    border: 1px solid #363b41;
+	border-top-left-radius: 0;
+	background: #3b4148;
+	border: 1px solid #363b41;
 }
 
-.login-form  .btn-login{
+.login-form  .btn-login {
 	width: 100%;
-    height: 52px;
+	height: 52px;
 	margin-top: 20px;
 }
 
-.add-video .form-control{
+.add-video .form-control {
 	background-color: unset;
 	border: 1px solid #555;
 }
 
-.table-striped>tbody>tr:nth-of-type(odd){
-	/* background-color: unset ; */
-}
-
 .title-admin {
 	font: 30px/40px 'UTMCafetaRegular';
-    text-transform: uppercase;
-    font-size: 20px;
-    font-weight: 400;
-    display: inline-block;
-    height: 40px;
-    line-height: 47px;
-    color: #dacb46;
-    border-radius: 3px 3px 0 0;
+	text-transform: uppercase;
+	font-size: 20px;
+	font-weight: 400;
+	display: inline-block;
+	height: 40px;
+	line-height: 47px;
+	color: #dacb46;
+	border-radius: 3px 3px 0 0;
 }
+
+/* Page review */
+.page-review .movie-poster {
+	width: 450px;
+	height: 370px;
+	position: relative;
+}
+
+.page-review .movie-poster img {
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+}
+
+.page-review  .description .movie-summary p {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	line-height: 25px;
+	-webkit-line-clamp: 4;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	font-size: 15px;
+	color: #c9c4c4;
+}
+
+.page-review  .description .movie-title {
+	margin-top: unset;
+}
+
+.page-review  .description .movie-meta strong {
+	color: #c9c4c4;
+	margin-right: 8px;
+}
+
+.page-review .movie-poster:before {
+	background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 40%, #292e39
+		100%);
+	content: '';
+	display: block;
+	position: absolute;
+	width: 100%;
+	opacity: 1;
+	height: 100%;
+	bottom: -1px;
+}
+
+.page-review .watch:hover {
+	opacity: 0.9;
+}
+
+.breadcrumbs .name-film-watch {
+	color: #dacb46;
+	font-weight: 800;
+	font-size: 20px;
+	display: inline-block;
+}
+
+.watch-video .embed-responsive .embed-responsive-item .html5-video-player a
+	{
+	opacity: 0 !important;
+}
+
+.watch-video-des .images {
+	width: 300px;
+    height: 190px;
+}
+
+.watch-video-des .images img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	
+}
+
+.watch-video-des {
+	padding: 10px;
+	background: #131313;
+	border-radius: 5px;
+	margin-bottom: 10px;
+	
+}
+
+.ytp-title-channel {
+	display: none !important;
+}
+
+.watch-video .text-eclip{
+	overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 25px;
+    -webkit-line-clamp: 5;
+    height: 128px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+}
+
+
+
+
+
+
+
+

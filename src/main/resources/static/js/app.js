@@ -1,6 +1,9 @@
 (function($, document, window) {
 
+
 	$(document).ready(function() {
+
+
 
 
 		$('#btnSearch').keyup(function(e) {
@@ -24,7 +27,7 @@
 				}
 			} */
 			if (e.keyCode == 13) {
-				if (textSearch === '' || textSearch === null){
+				if (textSearch === '' || textSearch === null) {
 					return;
 				}
 				window.location.replace("/search?text=" + textSearch);
@@ -90,5 +93,69 @@
 	$(window).load(function() {
 
 	});
+
+	/*function ratingVideo(id) {
+	var ratingPoint = 0;
+	var fid = $('#fid').val();
+	var webDomain = $('#webDomain').val();
+
+	switch (id) {
+	case 'starhalf':
+		ratingPoint = 0.5;
+		break;
+	case 'star1':
+		ratingPoint = 1;
+		break;
+	case 'star1half':
+		ratingPoint = 1.5;
+		break;
+	case 'star2':
+		ratingPoint = 2;
+		break;
+	case 'star2half':
+		ratingPoint = 2.5;
+		break;
+	case 'star3':
+		ratingPoint = 3;
+		break;
+	case 'star3half':
+		ratingPoint = 3.5;
+		break;
+	case 'star4':
+		ratingPoint = 4;
+		break;
+	case 'star4half':
+		ratingPoint = 4.5;
+		break;
+	case 'star5':
+		ratingPoint = 5;
+		break;
+	}
+
+	$
+			.ajax({
+				type : "GET",
+				headers : {
+					Accept : "application/json; charset=utf-8",
+					"Content-Type" : "application/json; charset=utf-8"
+				},
+				url : webDomain + 'api/video/ratingVideo/' + fid + '/'
+						+ ratingPoint,
+				success : function(result) {
+					return result;
+				},
+				error : function(data, status, er) {
+					alert('error: ' + data.tenhang + ' status: ' + status
+							+ ' er:' + er);
+				}
+			});
+	$('#rating :input').attr('disabled', true);
+	$('#rating').hide();
+	$('#yourPoint').text(ratingPoint);
+}*/
+
+
+	
+
 
 })(jQuery, document, window);

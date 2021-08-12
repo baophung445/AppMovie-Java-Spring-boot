@@ -1,141 +1,199 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
-	<meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
-	<meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
-	<title th:text="${web.wname}"></title>
-	
-	<script th:src="@{~/js/jquery-1.11.1.min.js}"></script>
-	<script th:src="@{~/js/bootstrap.js}"></script>
-	<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
-	<link th:href="@{~/fonts/font-awesome.min.css}" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" th:href="@{~/css/bootstrap.min.css}">
-	<link rel="stylesheet" th:href="@{~/css/style.css}">
-	<link rel="stylesheet" th:href="@{~/fontawesome/css/all.min.css}">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1.0,maximum-scale=1">
+<meta id="_csrf" name="_csrf" th:content="${_csrf.token}" />
+<meta id="_csrf_header" name="_csrf_header"
+	th:content="${_csrf.headerName}" />
+<title th:text="${web.wname}"></title>
+
+<script th:src="@{~/js/jquery-1.11.1.min.js}"></script>
+<script th:src="@{~/js/bootstrap.js}"></script>
+<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|"
+	rel="stylesheet" type="text/css">
+<link th:href="@{~/fonts/font-awesome.min.css}" rel="stylesheet"
+	type="text/css">
+<link rel="stylesheet" th:href="@{~/css/bootstrap.min.css}">
+<link rel="stylesheet" th:href="@{~/css/style.css}">
+<link rel="stylesheet" th:href="@{~/fontawesome/css/all.min.css}">
 </head>
-	<body>
-		
+<body>
 
-		<div id="site-content">
-			<header th:replace="~{./navigation_bar_layout :: header}"></header>
-			<main class="main-content">
-				<div class="container">
-					<div class="page">
-					
 
-						<div class="content">
-							<div class="row">
-								<div class="col-md-6">
-									<figure class="movie-poster"><a th:href="@{/watch/{id}(id=${film.fid})}"><img th:src="@{~/image/{imageurl}(imageurl=${film.fimageurl})}" alt="#" style="min-width: 450px;max-width: 450px"></a></figure>
+	<div id="site-content">
+		<header th:replace="~{./navigation_bar_layout :: header}"></header>
+		<main class="main-content">
+			<div class="container">
+				<div class="page">
+
+
+					<div class="content">
+						<div class="row page-review">
+							<div class="col-md-6">
+								<figure class="movie-poster" style="position: relative;">
+									<a th:href="@{/watch/{id}(id=${film.fid})}"
+										style="cursor: unset;"><img
+										th:src="@{~/image/{imageurl}(imageurl=${film.fimageurl})}"
+										alt="#" style="min-width: 450px; max-width: 450px"></a>
+									<a class="watch"
+										th:href="@{/watch/{id}(id=${film.fid})}"
+										style="
+										position: absolute; bottom: 30px; left: 163px; cursor:
+										pointer; border: 1px solid
+										transparent; border-radius: 4px; display: inline-block; color:
+										#fff; background-color: #d9534f; border-color:#d9534f; padding: 10px 20px;">XEM
+										PHIM</a>
+								</figure>
+							</div>
+							<div class="col-md-6 description">
+								<h2 class="movie-title" th:text="${film.fname}"
+									style="color: #FF9800; font-size: 26px; font-weight: bold; line-height: 1.25;">
+								</h2>
+								<div class="movie-summary">
+									<p th:text="${film.introduction}"></p>
 								</div>
-								<div class="col-md-6">
-									<h2 class="movie-title" th:text="${film.fname}"> </h2>
-									<div class="movie-summary">
-										<p th:text="${film.introduction}"></p>
-									</div>
-									<input type="hidden" th:value="${webDomain}" id="webDomain">
-									<input type="hidden" id="fid" th:value="${film.fid}">							
-									<ul class="movie-meta">
-										<li><strong>Rating:</strong><br> 
-											<div id="rating">
-												<input type="radio" id="star5" name="rating" value="5" checked="checked" th:if="${rate == 5}" onclick="ratingVideo(id)"/>
-    											<input type="radio" id="star5" name="rating" value="5" onclick="ratingVideo(id)" th:unless="${rate == 5}"/>
-    											<label class = "full" for="star5" title="Awesome - 5 stars"></label>
-    
-    											<input type="radio" id="star4half" name="rating" value="4 and a half" checked="checked" th:if="${rate == 4.5}" onclick="ratingVideo(id)"/>
-    											<input type="radio" id="star4half" name="rating" value="4 and a half" onclick="ratingVideo(id)" th:unless="${rate == 4.5}"/>
-    											<label class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
-    
-   												<input type="radio" id="star4" name="rating" value="4" checked="checked" th:if="${rate == 4}" onclick="ratingVideo(id)"/>
-   												<input type="radio" id="star4" name="rating" value="4" onclick="ratingVideo(id)" th:unless="${rate == 4}"/>
-    											<label class = "full" for="star4" title="Pretty good - 4 stars"></label>
-    
-    											<input type="radio" id="star3half" name="rating" value="3 and a half" checked="checked" th:if="${rate == 3.5}" onclick="ratingVideo(id)"/>
-    											<input type="radio" id="star3half" name="rating" value="3 and a half" onclick="ratingVideo(id)" th:unless="${rate == 3.5}"/>
-    											<label class="half" for="star3half" title="Meh - 3.5 stars"></label>
-    
-    											<input type="radio" id="star3" name="rating" value="3" checked="checked" th:if="${rate == 3}" onclick="ratingVideo(id)"/>
-    											<input type="radio" id="star3" name="rating" value="3" onclick="ratingVideo(id)" th:unless="${rate == 3}"/>
-    											<label class = "full" for="star3" title="Meh - 3 stars"></label>
-    
-    											<input type="radio" id="star2half" name="rating" value="2 and a half" checked="checked" th:if="${rate == 2.5}" onclick="ratingVideo(id)"/>
-    											<input type="radio" id="star2half" name="rating" value="2 and a half" onclick="ratingVideo(id)" th:unless="${rate == 2.5}"/>
-    											<label class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
-    
-    											<input type="radio" id="star2" name="rating" value="2" checked="checked" th:if="${rate == 2}" onclick="ratingVideo(id)"/>
-    											<input type="radio" id="star2" name="rating" value="2" onclick="ratingVideo(id)" th:unless="${rate == 2}"/>
-    											<label class = "full" for="star2" title="Kinda bad - 2 stars"></label>
-    
-    											<input type="radio" id="star1half" name="rating" value="1 and a half" checked="checked" th:if="${rate == 1.5}" onclick="ratingVideo(id)"/>
-    											<input type="radio" id="star1half" name="rating" value="1 and a half" onclick="ratingVideo(id)" th:unless="${rate == 1.5}"/>
-    											<label class="half" for="star1half" title="Meh - 1.5 stars"></label>
-    
-    											<input type="radio" id="star1" name="rating" value="1" checked="checked" th:if="${rate == 1}" onclick="ratingVideo(id)"/>
-    											<input type="radio" id="star1" name="rating" value="1" onclick="ratingVideo(id)" th:unless="${rate == 1}"/>
-    											<label class = "full" for="star1" title="Sucks big time - 1 star"></label>
-    
-    											<input type="radio" id="starhalf" name="rating" value="half" checked="checked" th:if="${rate == 0.5}" onclick="ratingVideo(id)"/>
-    											<input type="radio" id="starhalf" name="rating" value="half" onclick="ratingVideo(id)" th:unless="${rate == 0.5}"/>
-    											<label class="half" for="starhalf" title="Sucks big time - 0.5 stars"></label>
+								<input type="hidden" th:value="${webDomain}" id="webDomain">
+								<input type="hidden" id="fid" th:value="${film.fid}">
+								<ul class="movie-meta">
+									<li><strong>Rating:</strong><br>
+										<div id="rating">
+											<input type="radio" id="star5" name="rating" value="5"
+												checked="checked" th:if="${rate == 5}"
+												onclick="ratingVideo(id)" /> <input type="radio" id="star5"
+												name="rating" value="5" onclick="ratingVideo(id)"
+												th:unless="${rate == 5}" /> <label class="full" for="star5"
+												title="Awesome - 5 stars"></label> <input type="radio"
+												id="star4half" name="rating" value="4 and a half"
+												checked="checked" th:if="${rate == 4.5}"
+												onclick="ratingVideo(id)" /> <input type="radio"
+												id="star4half" name="rating" value="4 and a half"
+												onclick="ratingVideo(id)" th:unless="${rate == 4.5}" /> <label
+												class="half" for="star4half" title="Pretty good - 4.5 stars"></label>
+
+											<input type="radio" id="star4" name="rating" value="4"
+												checked="checked" th:if="${rate == 4}"
+												onclick="ratingVideo(id)" /> <input type="radio" id="star4"
+												name="rating" value="4" onclick="ratingVideo(id)"
+												th:unless="${rate == 4}" /> <label class="full" for="star4"
+												title="Pretty good - 4 stars"></label> <input type="radio"
+												id="star3half" name="rating" value="3 and a half"
+												checked="checked" th:if="${rate == 3.5}"
+												onclick="ratingVideo(id)" /> <input type="radio"
+												id="star3half" name="rating" value="3 and a half"
+												onclick="ratingVideo(id)" th:unless="${rate == 3.5}" /> <label
+												class="half" for="star3half" title="Meh - 3.5 stars"></label>
+
+											<input type="radio" id="star3" name="rating" value="3"
+												checked="checked" th:if="${rate == 3}"
+												onclick="ratingVideo(id)" /> <input type="radio" id="star3"
+												name="rating" value="3" onclick="ratingVideo(id)"
+												th:unless="${rate == 3}" /> <label class="full" for="star3"
+												title="Meh - 3 stars"></label> <input type="radio"
+												id="star2half" name="rating" value="2 and a half"
+												checked="checked" th:if="${rate == 2.5}"
+												onclick="ratingVideo(id)" /> <input type="radio"
+												id="star2half" name="rating" value="2 and a half"
+												onclick="ratingVideo(id)" th:unless="${rate == 2.5}" /> <label
+												class="half" for="star2half" title="Kinda bad - 2.5 stars"></label>
+
+											<input type="radio" id="star2" name="rating" value="2"
+												checked="checked" th:if="${rate == 2}"
+												onclick="ratingVideo(id)" /> <input type="radio" id="star2"
+												name="rating" value="2" onclick="ratingVideo(id)"
+												th:unless="${rate == 2}" /> <label class="full" for="star2"
+												title="Kinda bad - 2 stars"></label> <input type="radio"
+												id="star1half" name="rating" value="1 and a half"
+												checked="checked" th:if="${rate == 1.5}"
+												onclick="ratingVideo(id)" /> <input type="radio"
+												id="star1half" name="rating" value="1 and a half"
+												onclick="ratingVideo(id)" th:unless="${rate == 1.5}" /> <label
+												class="half" for="star1half" title="Meh - 1.5 stars"></label>
+
+											<input type="radio" id="star1" name="rating" value="1"
+												checked="checked" th:if="${rate == 1}"
+												onclick="ratingVideo(id)" /> <input type="radio" id="star1"
+												name="rating" value="1" onclick="ratingVideo(id)"
+												th:unless="${rate == 1}" /> <label class="full" for="star1"
+												title="Sucks big time - 1 star"></label> <input type="radio"
+												id="starhalf" name="rating" value="half" checked="checked"
+												th:if="${rate == 0.5}" onclick="ratingVideo(id)" /> <input
+												type="radio" id="starhalf" name="rating" value="half"
+												onclick="ratingVideo(id)" th:unless="${rate == 0.5}" /> <label
+												class="half" for="starhalf"
+												title="Sucks big time - 0.5 stars"></label>
+										</div>
+										<h2 id="yourPoint"></h2></li>
+
+									<li class="clear-both"><strong>View: </strong> <span
+										th:text="${film.fview}"></span></li>
+									<li><strong>Length: </strong><span
+										th:text="${film.length}"></span></li>
+									<li th:if="${film.fepisodecount > 1}"><strong>Video
+											count: </strong><span th:text="${film.fepisodecount}"></span></li>
+									<li><strong>Year: </strong> <span th:text="${film.fyear}"></span></li>
+									<li><strong>Country: </strong> <span
+										th:text="${film.country.coname}"></span></li>
+									<li><strong>Category: </strong> <span
+										th:text="${categories}"></span></li>
+									<li><strong>Accept account: </strong> <span
+										th:text="${film.acceptAccount}"></span></li>
+								</ul>
+								<button class="btn btn-warning btn-block"
+									th:if="${film.fepisodecount > numberOfFilmDetail and film.frequest == 0}"
+									data-toggle="modal" data-target="#addEpisode">Add
+									Episode</button>
+								<div class="btn btn-warning btn-block"
+									th:if="${film.fepisodecount > numberOfFilmDetail and film.frequest != 0}">Waiting</div>
+
+								<div class="modal" tabindex="-1" role="dialog" id="addEpisode">
+									<div class="modal-dialog" role="document">
+
+										<!-- Modal content -->
+										<div class="modal-content">
+											<div class="modal-header">
+												<h3 class="modal-title">Add video request</h3>
 											</div>
-											<h2 id="yourPoint"></h2>
-										</li>
-										
-										<li class="clear-both"><strong>View: </strong> <span th:text="${film.fview}"></span></li>
-										<li><strong>Length: </strong><span th:text="${film.length}"></span></li>
-										<li th:if="${film.fepisodecount > 1}">
-											<strong>Video count: </strong><span th:text="${film.fepisodecount}"></span>
-										</li>
-										<li><strong>Year: </strong> <span th:text="${film.fyear}"></span></li>
-										<li><strong>Country: </strong> <span th:text="${film.country.coname}"></span></li>
-										<li><strong>Category: </strong> <span th:text="${categories}"></span></li>
-										<li><strong>Accept account: </strong> <span th:text="${film.acceptAccount}"></span></li>
-									</ul>
-									<button class="btn btn-warning btn-block" th:if="${film.fepisodecount > numberOfFilmDetail and film.frequest == 0}" data-toggle="modal" data-target="#addEpisode">Add Episode</button>
-									<div class="btn btn-warning btn-block" th:if="${film.fepisodecount > numberOfFilmDetail and film.frequest != 0}">Waiting</div>
-									
-									<div class="modal" tabindex="-1" role="dialog" id="addEpisode">
-  										<div class="modal-dialog" role="document">
-  				
-  											<!-- Modal content -->
-    										<div class="modal-content">
-    											<div class="modal-header">
-        											<h3 class="modal-title">Add video request</h3>
-     											</div>
-    											<!-- Modal body -->
-      											<div class="modal-body">
-      												<div class="form-group">
-      													<input type="text" placeholder="Email to contact" class="form-control" id="emailContact"><br>
-      													<input type="number" placeholder="Episode number" class="form-control" id="episodeNumber"><br>
-      													<input type="text" placeholder="Url" class="form-control" id="urlRaw">
-      													<input type="hidden" id="url"/>
-      												</div>
-      											</div>
-      					
-      											<!-- Modal footer -->
-      											<div class="modal-footer">
-        											<button type="button" class="btn btn-primary" id="btnAddEpisode">Yes</button>
-        											<button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
-      											</div>
-    										</div>
-  										</div>
+											<!-- Modal body -->
+											<div class="modal-body">
+												<div class="form-group">
+													<input type="text" placeholder="Email to contact"
+														class="form-control" id="emailContact"><br> <input
+														type="number" placeholder="Episode number"
+														class="form-control" id="episodeNumber"><br>
+													<input type="text" placeholder="Url" class="form-control"
+														id="urlRaw"> <input type="hidden" id="url" />
+												</div>
+											</div>
+
+											<!-- Modal footer -->
+											<div class="modal-footer">
+												<button type="button" class="btn btn-primary"
+													id="btnAddEpisode">Yes</button>
+												<button type="button" class="btn btn-secondary"
+													data-dismiss="modal">No</button>
+											</div>
+										</div>
 									</div>
-									<h2 id="message"></h2>
 								</div>
-							</div> <!-- .row -->
+								<h2 id="message"></h2>
+							</div>
 						</div>
+						<!-- .row -->
 					</div>
-				</div> <!-- .container -->
-			</main>
-			<footer th:replace="~{./footer_layout :: footer}"></footer>
-		</div>
-		<script th:src="@{~/js/plugins.js}"></script>
-		<script th:src="@{~/js/app.js}"></script>
-		
-		<script th:src="@{~/js/review_video.js}"></script>
-	</body>
+
+				</div>
+			</div>
+			<!-- .container -->
+		</main>
+		<footer th:replace="~{./footer_layout :: footer}"></footer>
+	</div>
+	<script th:src="@{~/js/plugins.js}"></script>
+	<script th:src="@{~/js/app.js}"></script>
+
+	<script th:src="@{~/js/review_video.js}"></script>
+</body>
 
 </html>

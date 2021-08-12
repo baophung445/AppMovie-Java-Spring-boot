@@ -61,6 +61,7 @@ function YouTubeGetID(url) {
 
 	return 'https://www.youtube.com/embed/' + id;
 }
+
 function ratingVideo(id) {
 	var ratingPoint = 0;
 	var fid = $('#fid').val();

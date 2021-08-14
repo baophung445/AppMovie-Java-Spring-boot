@@ -1705,7 +1705,7 @@ ul.arrow li a:hover {
 	display: inline-block;
 	color: #84878d;
 	font-size: 14px;
-	font-size: 0.9333333333em;
+	font-size: 16px;
 	font-weight: 400;
 	line-height: 1;
 	color: burlywood;
@@ -3080,9 +3080,38 @@ div, label {
     display: -webkit-box;
     -webkit-box-orient: vertical;
 }
+
+/* CSS TEXT */
+
+.example button {
+  float: left;
+  background-color: #4E3E55;
+  color: white;
+  border: none;
+  box-shadow: none;
+  font-size: 17px;
+  font-weight: 500;
+  font-weight: 600;
+  border-radius: 3px;
+  padding: 15px 35px;
+  margin: 26px 5px 0 5px;
+  cursor: pointer; 
+}
+.example button:focus{
+  outline: none; 
+}
+.example button:hover{
+  background-color: #33DE23; 
+}
+.example button:active{
+  background-color: #81ccee; 
 }
 
+/* END CSS TEXT */
 
+.btn {
+	cursor: pointer;
+}
 
 
 

@@ -24,10 +24,10 @@ $(document)
 					});
 					$('#selectForm').change(function() {
 						var val = $("#selectForm option:selected").text();
-						if (val == 'Video') {
+						if (val == 'Phim lẻ') {
 							location.replace("/add-new-video");
 						}
-						if (val == 'Group Video') {
+						if (val == 'Phim bộ') {
 							location.replace("/add-new-group-video");
 						}
 					});

@@ -39,12 +39,11 @@
 							<div class="col-md-6 col-sx-12">
 								<div class="reponsive-img">
 									<a th:href="@{~/review/{id} (id = ${Filmhot[0].fid})}"><img
-										
 										class="img-banner"
 										th:src="@{~/image/{imageurl}(imageurl=${Filmhot[0].fimageurl})}"
 										alt="Movie hot"
-										style="height: 100%; width: 100%; object-fit: cover;border-top-left-radius: 6px; border-bottom-left-radius: 6px;"> </a>
-									<img alt="1080-full-hd" src="image/1080.jfif"
+										style="height: 100%; width: 100%; object-fit: cover; border-top-left-radius: 6px; border-bottom-left-radius: 6px;">
+									</a> <img alt="1080-full-hd" src="image/1080.jfif"
 										class="img-full-hd" style="width: 60px; height: 60px"> </img>
 								</div>
 							</div>
@@ -55,9 +54,9 @@
 								<ul class="movie-meta">
 									<li><strong>Rating:</strong><br>
 										<div id="rating">
-											<input type="radio" id="star5" name="rating" value="5" 
+											<input type="radio" id="star5" name="rating" value="5"
 												checked="checked" th:if="${rate == 5}"
-												onclick="ratingVideo(id)" /> <input  type="radio" id="star5"
+												onclick="ratingVideo(id)" /> <input type="radio" id="star5"
 												name="rating" value="5" onclick="ratingVideo(id)"
 												th:unless="${rate == 5}" /> <label class="full" for="star5"
 												title="Awesome - 5 stars"></label> <input type="radio"
@@ -266,40 +265,35 @@
 												Xem tất cả</span> <i class="fas fa-angle-right"></i></a>
 									</div>
 
+									
+
 								</div>
-
-
 							</div>
 						</div>
 					</div>
-
-
-
-
-
-
-
-
-
-
 				</div>
 			</div>
 			<!-- .container -->
 		</main>
 		<footer th:replace="~{./footer_layout :: footer}"></footer>
 	</div>
-	
+
 	<script th:src="@{~/js/plugins.js}"></script>
 	<script th:src="@{~/js/app.js}"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$('#home').addClass('current-menu-item');
 			var change = $('#rating').children()
 
 			change.get().forEach(c => {
-
 				c.disabled = true
-			})
+			});
+			
+			
+			
+			
 		});
 		
 	</script>

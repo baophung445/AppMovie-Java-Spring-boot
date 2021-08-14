@@ -2,38 +2,61 @@ $(document).ready(function() {
 	
 	
 	
+	if ( localStorage.getItem('submitVideo')) {
+			swal("Good job!", "Bạn đã thêm phim thành công!", "success");
+			localStorage.removeItem('submitVideo');	
+	}
+	
+	
 	$('#addfilm').addClass('current-menu-item');
 	$('#urlRaw').change(function() {
 		var rawUrl = $('#urlRaw').val();
 		var urlEmbed = YouTubeGetID(rawUrl);
 		$('#url').val(urlEmbed);
 	});
-	$('#btnCommit').click(function() {
+	
+	
+	
+	
+	$('#btnCommit').click(function(event) {
+		
+		
+		
 		var email = $('#requestEmail').val();
 		checked = $("input[type=checkbox]:checked").length;
 
-		if (!validateEmail(email)) {
+		/*if (!validateEmail(email)) {
 			alert("Invalid email address.");
+			
 			return false;
 		}
 
 		if (!checked) {
 			alert("You must check at least one checkbox.");
 			return false;
-		}
+		}*/
 		
 		if ($('#url').val() === null) {
 			var rawUrl = $('#urlRaw').val();
 			var urlEmbed = YouTubeGetID(rawUrl);
 			$('#url').val(urlEmbed);
 		}
+		
+		localStorage.setItem('submitVideo', 'true');
+		
+	
+		
+		
+		
+		
 	});
+	
 	$('#selectForm').change(function() {
 		var val = $("#selectForm option:selected").text();
-		if (val == 'Video') {
+		if (val == 'Phim lẻ') {
 			location.replace("/add-new-video");
 		}
-		if (val == 'Group Video') {
+		if (val == 'Phim bộ') {
 			location.replace("/add-new-group-video");
 		}
 	});

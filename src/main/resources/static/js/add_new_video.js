@@ -43,12 +43,7 @@ $(document).ready(function() {
 		}
 		
 		localStorage.setItem('submitVideo', 'true');
-		
-	
-		
-		
-		
-		
+			
 	});
 	
 	$('#selectForm').change(function() {

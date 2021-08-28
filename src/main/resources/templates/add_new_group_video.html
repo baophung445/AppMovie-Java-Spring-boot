@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0,maximum-scale=1">
-<title th:text="${web.wname}"></title>
+<title > Web xem phim</title>
 
 <script th:src="@{~/js/jquery-1.11.1.min.js}"></script>
 <script th:src="@{~/js/bootstrap.js}"></script>
@@ -151,7 +151,7 @@
 							style="min-width: 80px; margin-top: 20px;">Lưu</button>
 					</form>
 				</div>
-				<h2 th:utext="${message}"></h2>
+				<!-- <h2 th:utext="${message}"></h2> -->
 			</div>
 		</main>
 		<footer th:replace="~{./footer_layout :: footer}"></footer>
@@ -159,5 +159,7 @@
 	<script th:src="@{~/js/plugins.js}"></script>
 	<script th:src="@{~/js/app.js}"></script>
 	<script th:src="@{~/js/add_new_group_video.js}"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

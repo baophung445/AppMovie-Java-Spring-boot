@@ -1972,15 +1972,13 @@ ul.arrow li a:hover {
 	height: 5rem;
 	margin: 3rem;
 	border-radius: 0.6rem;
-	background: #ffffff;
 	box-shadow: 0 0.8rem 2rem rgba(#5a6181, 0.05);
 }
 
 .pagination .page-number {
 	display: inline-block;
-	width: 30px;
+	width: 40px;
 	height: 30px;
-	border-radius: 5px;
 	line-height: 1.9;
 	color: #84878d;
 	font-size: 15px;
@@ -1992,7 +1990,7 @@ ul.arrow li a:hover {
 }
 
 .pagination .page-number.current, .pagination .page-number:hover {
-	background: #23adad;
+	background: rosybrown;
 	color: white;
 }
 
@@ -3049,14 +3047,13 @@ div, label {
 
 .watch-video-des .images {
 	width: 300px;
-    height: 190px;
+	height: 190px;
 }
 
 .watch-video-des .images img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
-	
 }
 
 .watch-video-des {
@@ -3064,54 +3061,93 @@ div, label {
 	background: #131313;
 	border-radius: 5px;
 	margin-bottom: 10px;
-	
 }
 
 .ytp-title-channel {
 	display: none !important;
 }
 
-.watch-video .text-eclip{
+.watch-video .text-eclip {
 	overflow: hidden;
-    text-overflow: ellipsis;
-    line-height: 25px;
-    -webkit-line-clamp: 5;
-    height: 128px;
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
+	text-overflow: ellipsis;
+	line-height: 25px;
+	-webkit-line-clamp: 5;
+	height: 128px;
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
 }
 
 /* CSS TEXT */
-
 .example button {
-  float: left;
-  background-color: #4E3E55;
-  color: white;
-  border: none;
-  box-shadow: none;
-  font-size: 17px;
-  font-weight: 500;
-  font-weight: 600;
-  border-radius: 3px;
-  padding: 15px 35px;
-  margin: 26px 5px 0 5px;
-  cursor: pointer; 
+	float: left;
+	background-color: #4E3E55;
+	color: white;
+	border: none;
+	box-shadow: none;
+	font-size: 17px;
+	font-weight: 500;
+	font-weight: 600;
+	border-radius: 3px;
+	padding: 15px 35px;
+	margin: 26px 5px 0 5px;
+	cursor: pointer;
 }
-.example button:focus{
-  outline: none; 
+
+.example button:focus {
+	outline: none;
 }
-.example button:hover{
-  background-color: #33DE23; 
+
+.example button:hover {
+	background-color: #33DE23;
 }
-.example button:active{
-  background-color: #81ccee; 
+
+.example button:active {
+	background-color: #81ccee;
 }
 
 /* END CSS TEXT */
-
 .btn {
 	cursor: pointer;
 }
+
+.main-content {
+	min-height: 300px;
+}
+
+.title-page-new {
+	font-family: 'Oswald', sans-serif;
+	padding: 15px 20px;
+	display: inline-block;
+	background: repeating-linear-gradient(45deg, black, transparent 100px);
+	border-radius: 10px;
+	cursor: pointer;
+	/*  color: indianred; */
+	/* box-shadow: 3px 5px 7px; */
+	font-size: 18px;
+}
+
+.movie-poster-new{
+	width: 450px;
+    height: 390px;
+}
+.movie-poster-new img{
+	width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -115,18 +115,19 @@ public class AdminController {
 
 	@RequestMapping("/deleteAccount/{uid}")
 	public String deleteAccount(Model model, @PathVariable("uid") String uid) {
-		LOGGER.info("deleteAccount: " + "uid=" + uid);
+		try {
+			LOGGER.info("deleteAccount: " + "uid=" + uid);
+			int userId = Integer.parseInt(uid);
+			User user = userRepository.findByUid(userId);
+			String email = user.getEmail();
+			userRepository.deleteById(userId);
+			mailService.sendEmail(email, ConstantVariable.DELETE_ACCOUNT_SUBJECT, ConstantVariable.DELETE_ACCOUNT_BODY);
 
-		int userId = Integer.parseInt(uid);
+			return "redirect:/admin/accountManager";
+		} catch (Exception e) {
+			return "redirect:/admin/accountManager";
+		}
 
-		User user = userRepository.findByUid(userId);
-		String email = user.getEmail();
-
-		userRepository.deleteById(userId);
-
-		mailService.sendEmail(email, ConstantVariable.DELETE_ACCOUNT_SUBJECT, ConstantVariable.DELETE_ACCOUNT_BODY);
-
-		return "redirect:/admin/accountManager";
 	}
 
 	@RequestMapping("/editAccount/{uid}/{newUserName}/{newPassword}")
@@ -214,13 +215,17 @@ public class AdminController {
 	}
 
 	@RequestMapping("/deleteCountry/{countryId}")
-	public String deleteCountry(@PathVariable("countryId") String countryId) {
-		LOGGER.info("deleteCountry: " + "countryId=" + countryId);
+	public String deleteCountry(Model model, @PathVariable("countryId") String countryId) {
 
-		Country country = countryService.findById(countryId);
-		countryService.delete(country);
+		try {
+			LOGGER.info("deleteCountry: " + "countryId=" + countryId);
+			Country country = countryService.findById(countryId);
+			countryService.delete(country);
+			return "redirect:/admin/countryManager";
+		} catch (Exception e) {
+			return "redirect:/admin/countryManager";
+		}
 
-		return "redirect:/admin/countryManager";
 	}
 
 	@RequestMapping("/editCountry/{countryId}/{newCountryName}")
@@ -261,13 +266,19 @@ public class AdminController {
 	}
 
 	@RequestMapping("/deleteCategory/{categoryId}")
-	public String deleteCategory(@PathVariable("categoryId") String categoryId) {
-		LOGGER.info("deleteCategory: " + "categoryId=" + categoryId);
+	public String deleteCategory(Model model, @PathVariable("categoryId") String categoryId) {
+		try {
+			LOGGER.info("deleteCategory: " + "categoryId=" + categoryId);
+			Category category = categoryService.findByCategoryId(categoryId);
+			categoryService.delete(category);
+			return "redirect:/admin/categoryManager";
+		
+			
+		} catch (Exception e) {
+				
+			return "redirect:/admin/categoryManager";
+		}
 
-		Category category = categoryService.findByCategoryId(categoryId);
-		categoryService.delete(category);
-
-		return "redirect:/admin/categoryManager";
 	}
 
 	@RequestMapping("/editCategory/{categoryId}/{newCategoryName}")
@@ -368,13 +379,16 @@ public class AdminController {
 
 	@RequestMapping("/deleteWeb/{webId}")
 	public String deleteWeb(@PathVariable("webId") String webId) {
-		LOGGER.info("deleteWeb: " + "webId=" + webId);
+		try {
+			LOGGER.info("deleteWeb: " + "webId=" + webId);
+			int wid = Integer.parseInt(webId);
+			Web web = webService.findByWid(wid);
+			webService.delete(web);
+			return "redirect:/admin/webManager";
+		} catch (Exception e) {
+			return "redirect:/admin/webManager";
+		}
 
-		int wid = Integer.parseInt(webId);
-		Web web = webService.findByWid(wid);
-		webService.delete(web);
-
-		return "redirect:/admin/webManager";
 	}
 
 	@RequestMapping("/editWeb/{webId}/{newWebName}/{newWebTitle}")
@@ -422,7 +436,8 @@ public class AdminController {
 	 */
 
 	@RequestMapping("/videoManagerAdvance")
-	public String filmManagerAdvance(Model model, @RequestParam(name = "searchCondition", required = false) String searchCondition) {
+	public String filmManagerAdvance(Model model,
+			@RequestParam(name = "searchCondition", required = false) String searchCondition) {
 		LOGGER.info("filmManagerAdvance: ");
 
 		List<Film> listFilm;
@@ -511,18 +526,20 @@ public class AdminController {
 
 	@RequestMapping("deleteFilm/{fid}")
 	public String deleteFilm(@PathVariable("fid") String fid) {
-		LOGGER.info("deleteFilm: " + " fid=" + fid);
+		try {
+			LOGGER.info("deleteFilm: " + " fid=" + fid);
+			int id = Integer.parseInt(fid);
+			Film film = filmService.findFilmById(id);
 
-		int id = Integer.parseInt(fid);
-		Film film = filmService.findFilmById(id);
-
-		List<FilmDetail> listFilmDetail = filmDetailService.findAllByFid(id);
-		for (FilmDetail fd : listFilmDetail) {
-			filmDetailService.delete(fd);
+			List<FilmDetail> listFilmDetail = filmDetailService.findAllByFid(id);
+			for (FilmDetail fd : listFilmDetail) {
+				filmDetailService.delete(fd);
+			}
+			filmService.delete(film);
+			return "redirect:/admin/videoManagerAdvance";
+		} catch (Exception e) {
+			return "redirect:/admin/videoManagerAdvance";
 		}
-		filmService.delete(film);
-
-		return "redirect:/admin/videoManagerAdvance";
 	}
 
 	@RequestMapping("videoDetail/{fid}")
@@ -568,13 +585,17 @@ public class AdminController {
 
 	@RequestMapping("deleteVideoDetail/{fdid}")
 	public String deleteFilmDetail(@PathVariable("fdid") String fdid) {
-		LOGGER.info("deleteFilmDetail: " + " fdid=" + fdid);
 
-		int id = Integer.parseInt(fdid);
-		FilmDetail filmDetail = filmDetailService.findByFdid(id);
-		filmDetailService.delete(filmDetail);
-
-		return "redirect:/admin/videoDetail/" + id + "?searchCondition=";
+		try {
+			LOGGER.info("deleteFilmDetail: " + " fdid=" + fdid);
+			int id = Integer.parseInt(fdid);
+			FilmDetail filmDetail = filmDetailService.findByFdid(id);
+			filmDetailService.delete(filmDetail);
+			return "redirect:/admin/videoDetail/" + id + "?searchCondition=";
+		} catch (Exception e) {
+			int id = Integer.parseInt(fdid);
+			return "redirect:/admin/videoDetail/" + id + "?searchCondition=";
+		}
 	}
 
 	@RequestMapping("/statisticsChart")
@@ -591,12 +612,12 @@ public class AdminController {
 			strYear = dateFormat.format(film.getfAcceptTime());
 			setYear.add(strYear);
 		}
-		
+
 		List<String> listYear = new ArrayList<String>();
 		listYear.addAll(setYear);
 		Comparator<String> cmp = new YearStringComparator();
 		Collections.sort(listYear, cmp);
-		
+
 		List<User> listUser = userRepository.findAll();
 
 		model.addAttribute("listUser", listUser);
@@ -605,5 +626,5 @@ public class AdminController {
 
 		return "statistics-chart";
 	}
-	
+
 }

@@ -1,6 +1,19 @@
 $(document)
 	.ready(
 		function() {
+
+			if (localStorage.getItem('createUser')) {
+				Swal.fire({
+					position: 'center',
+					icon: 'success',
+					title: 'Bạn đã tạo User thành công !',
+					showConfirmButton: false,
+					/*timer: 1500*/
+				})
+				localStorage.removeItem('createUser');
+			}
+
+
 			$('#adminFeature').addClass('current-menu-item');
 
 			/* Xóa*/
@@ -8,13 +21,17 @@ $(document)
 				var chosenIndex = $('#chosenIndex').val();
 				var userId = $('#userId' + chosenIndex).text();
 
-				swal("Good job!", "Bạn đã xóa tài khoản thành công!", "success");
+				Swal.fire({
+					position: 'center',
+					icon: 'success',
+					title: 'Bạn đã xóa User thành công !',
+					showConfirmButton: false,
+					timer: 1500
+				})
 
 				setTimeout(function() {
 					window.location.replace('deleteAccount/' + userId);
-				}, 3000);
-
-
+				}, 500);
 			})
 
 			/* Sửa */
@@ -35,17 +52,20 @@ $(document)
 						return;
 					}
 
-					swal("Good job!", "Bạn đã chỉnh sửa thông tin Account thành công!", "success");
+					Swal.fire({
+						position: 'center',
+						icon: 'success',
+						title: 'Bạn đã sửa User thành công !',
+						showConfirmButton: false,
+						/*timer: 1500*/
+					})
 
 					setTimeout(function() {
 
 						window.location.replace('editAccount/' + userId
 							+ '/' + newUserName + '/' + newPassword);
 
-					}, 3000);
-
-
-
+					}, 500);
 				})
 
 			/* Thêm*/
@@ -108,24 +128,16 @@ $(document)
 								success: function(result) {
 									if (result != null) {
 
-										swal("Good job!", "Bạn đã tạo User thành công!", "success");
-
-										/*alert("Bạn đã tạo User thành công!");*/
-										setTimeout(function() {
-											window.location.replace('');
-										}, 3000);
-
+										localStorage.setItem('createUser', 'true');
+										window.location.replace('');
 
 									}
 									return result;
 								},
 								error: function(data,
 									status, er) {
-									alert("error: "
-										+ data.tenhang
-										+ " status: "
-										+ status
-										+ " er:" + er);
+									alert("Tạo User thất bại"
+									);
 								}
 							});
 

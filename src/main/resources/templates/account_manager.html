@@ -9,7 +9,7 @@
 <meta id="_csrf" name="_csrf" th:content="${_csrf.token}" />
 <meta id="_csrf_header" name="_csrf_header"
 	th:content="${_csrf.headerName}" />
-<title th:text="${web.wname}"></title>
+<title > Web xem phim</title>
 
 <script th:src="@{~/js/jquery-1.11.1.min.js}"></script>
 <script th:src="@{~/js/bootstrap.js}"></script>
@@ -20,30 +20,34 @@
 <link rel="stylesheet" th:href="@{~/css/bootstrap.min.css}">
 <link rel="stylesheet" th:href="@{~/css/style.css}">
 <link rel="stylesheet" th:href="@{~/fontawesome/css/all.min.css}">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link
+	href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap"
+	rel="stylesheet">
 </head>
 <body>
 	<div id="site-content">
 		<header th:replace="~{./navigation_bar_layout :: header}"></header>
 		<main class="main-content">
-			<div class="container">
-				<!-- <div class="page">
-					<div class="breadcrumbs">
-						<a th:href="@{/index}">Home</a>
-						<a th:href="@{/admin}">Admin</a>
-						<span>Account manager</span>
-						<span th:text="${film.fname}"></span>
-					</div>
-				</div> -->
+			<div class="container" style="padding-top: 50px;">
+
 				<div class="main-content form-group">
 					<input type="hidden" th:value="${webDomain}" id="webDomain">
-					<input type="hidden" value="" id="chosenIndex"> <i
-						class="fas fa-user-circle"></i>
-					<h2 class="float-left title-admin ">Quản lí Acount</h2>
+					<input type="hidden" value="" id="chosenIndex">
+					<div>
+						<a th:href="@{~/admin}" class="float-left title-page-new">
+							Admin </a> <a th:href="@{~/admin/accountManager}"
+							class="float-left title-page-new"> Quản lí Account </a>
+					</div>
+
 					<div class="btn btn-primary float-right" data-toggle="modal"
-						data-target="#createModal">Tạo tài khoản</div>
+						data-target="#createModal" style="transform: translateY(-20px);">Tạo tài
+						khoản</div>
 
 					<table class="table  table-hover" id="tableId"
-						style="color: black; background: white;">
+						style="color: black; background: white; margin-top: 30px">
 						<thead class="thead-dark">
 							<tr>
 								<th scope="col">STT</th>
@@ -77,11 +81,11 @@
 										th:if="${user.uname != 'Admin'}"
 										th:onclick="'onclickDeleteFunction(' + ${status.index + 1} + ');'"
 										data-toggle="modal" data-target="#deleteModal">Xóa</div>
-									<div class="btn btn-danger btn-sm"
+									<!-- <div class="btn btn-danger btn-sm"
 										sec:authorize="hasRole('ROLE_ADMIN')"
 										th:if="${user.uname == 'Admin'}"
 										th:onclick="'onclickDeleteFunction(' + ${status.index + 1} + ');'"
-										data-toggle="modal" data-target="#deleteModal">Xóa</div>
+										data-toggle="modal" data-target="#deleteModal">Xóa</div> -->
 								</td>
 							</tr>
 						</tbody>
@@ -105,9 +109,10 @@
 								<!-- Modal footer -->
 								<div class="modal-footer"
 									style="align-items: center; display: flex; justify-content: center;">
-									<button type="button" class="btn btn-danger" id="btnDelete" style="width: 90px;">Yes</button>
-									<button type="button" class="btn btn-secondary" style="width: 90px;"
-										data-dismiss="modal">No</button>
+									<button type="button" class="btn btn-danger" id="btnDelete"
+										style="width: 90px;">Yes</button>
+									<button type="button" class="btn btn-secondary"
+										style="width: 90px;" data-dismiss="modal">No</button>
 								</div>
 							</div>
 						</div>
@@ -125,11 +130,12 @@
 								<div class="modal-body">
 									<div class="form-group">
 										<input type="text" placeholder="New user name"
-											class="form-control" id="newUserName" required><br> <input
-											type="password" placeholder="New password"
-											class="form-control" id="newPassword"><br> <input required
-											type="checkbox" onclick="showPassword()" id="showPassword"><label
-											for="showPassword">&nbsp;Show Password</label>
+											class="form-control" id="newUserName" required><br>
+										<input type="password" placeholder="New password"
+											class="form-control" id="newPassword"><br> <input
+											required type="checkbox" onclick="showPassword()"
+											id="showPassword"><label for="showPassword">&nbsp;Show
+											Password</label>
 									</div>
 								</div>
 
@@ -181,6 +187,6 @@
 	<script th:src="@{~/js/plugins.js}"></script>
 	<script th:src="@{~/js/app.js}"></script>
 	<script th:src="@{~/js/account_manager.js}"></script>
-	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>

@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
-	<title th:text="${web.wname}"></title>
+	<title > Web xem phim</title>
 	
 	<script th:src="@{~/js/jquery-1.11.1.min.js}"></script>
 	<script th:src="@{~/js/bootstrap.js}"></script>
@@ -27,14 +27,14 @@
 					</div>
 				</div> -->
 				<div class="main-content form-group">
-        			<h2 style="color: cadetblue; font-size: 23px; font-weight: bold; line-height: 1.25;margin-bottom: 25px;"><i class="fas fa-tasks"></i>   Utilmate Feature</h2>
+        		<!-- 	<h2 style="color: cadetblue; font-size: 23px; font-weight: bold; line-height: 1.25;margin-bottom: 25px;"><i class="fas fa-tasks"></i>   Utilmate Feature</h2> -->
         			<div id="groupAdmin">
-        				<a th:href="@{/admin/accountManager}" class="btn btn-outline-primary btn-block btn-lg">Account Manager</a>
-        				<a th:href="@{/admin/videoManagerAdvance?searchCondition=}" class="btn btn-outline-warning btn-block btn-lg">Video Manager Advance</a>
-        				<a th:href="@{/admin/countryManager}" class="btn btn-outline-success btn-block btn-lg">Country Manager</a>
-        				<a th:href="@{/admin/categoryManager}" class="btn btn-outline-danger btn-block btn-lg">Category Manager</a>
+        				<a th:href="@{/admin/accountManager}" class="btn btn-outline-primary btn-block btn-lg"><i class="fas fa-user-circle" style="margin-right: 8px;"></i>Quản lí  tài khoản</a>
+        				<a th:href="@{/admin/videoManagerAdvance?searchCondition=}" class="btn btn-outline-warning btn-block btn-lg"><i class="fas fa-film" style="margin-right: 8px;"></i>Quản lí Phim</a>
+        				<a th:href="@{/admin/countryManager}" class="btn btn-outline-success btn-block btn-lg"><i class="fas fa-globe-americas" style="margin-right: 8px;"></i>Quản lí quốc gia</a>
+        				<a th:href="@{/admin/categoryManager}" class="btn btn-outline-danger btn-block btn-lg"><i class="fas fa-radiation-alt" style="margin-right: 8px;"></i>Thể loại</a>
         				<!-- <a th:href="@{/admin/statisticsChart}" class="btn btn-outline-secondary btn-block btn-lg">Statistics Chart</a> -->
-        				<a th:href="@{/admin/webManager}" class="btn btn-outline-dark btn-block btn-lg">Web Manager</a>				
+        				<a th:href="@{/admin/webManager}" class="btn btn-outline-dark btn-block btn-lg"><i class="fas fa-address-card" style="margin-right: 8px;"></i>Quản lí Website</a>				
         			</div>
     			</div>
 			</div>
@@ -43,6 +43,7 @@
 	</div>
 	<script th:src="@{~/js/plugins.js}"></script>
 	<script th:src="@{~/js/app.js}"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script type="text/javascript">
 			$( document ).ready(function() {
 		    	$('#adminFeature').addClass('current-menu-item');

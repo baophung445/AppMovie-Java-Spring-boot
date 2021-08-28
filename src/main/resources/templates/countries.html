@@ -6,7 +6,7 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1.0,maximum-scale=1">
 
-<title th:text="${web.wname}"></title>
+<title > Web xem phim</title>
 
 <script th:src="@{~/js/jquery-1.11.1.min.js}"></script>
 <script th:src="@{~/js/bootstrap.js}"></script>
@@ -29,9 +29,10 @@
 		<main class="main-content">
 			<div class="container">
 				<div class="page">
-					
-					<div class="filters " style="position: relative;transform: translateX(-21px);">
-					<h3 style="font-weight: 700; font-size: 16px;">Quốc gia</h3>
+
+					<div class="filters "
+						style="position: relative; transform: translateX(-21px);">
+						<h3 style="font-weight: 700; font-size: 16px;">Quốc gia</h3>
 						<select name="#" id="selectCountries">
 							<option th:value="ALL" th:utext="All" th:selected="true"></option>
 							<option th:each="country : ${listCountry}"
@@ -95,7 +96,7 @@
 		</main>
 		<footer th:replace="~{./footer_layout :: footer}"></footer>
 	</div>
-
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script th:src="@{~/js/plugins.js}"></script>
 	<script th:src="@{~/js/app.js}"></script>
 	<script type="text/javascript">

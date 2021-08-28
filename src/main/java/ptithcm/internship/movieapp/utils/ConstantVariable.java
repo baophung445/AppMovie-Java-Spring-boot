@@ -10,7 +10,7 @@ public class ConstantVariable {
 	public static final int TOP_ITEMS = 40;
 	public static final int DEFAULT_COMMENT = 10;
 	public static final int MAX_FILM_NAME_LENGTH = 16;
-	public static final String UPLOAD_IMAGE_REAL_PATH = "C:\\Users\\baoph\\my-workspace\\movieapp\\src\\main\\resources\\static\\image";
+	public static final String UPLOAD_IMAGE_REAL_PATH = "C:\\Users\\baoph\\eclipse-workspace\\AppMovie\\src\\main\\resources\\static\\image";
 	public static final String DELETE_MAIL_SUBJECT = "Your film request was delete!";
 	public static final String DELETE_EPISODE_MAIL_SUBJECT = "Your add epsiode request was deleted!";
 	public static final String ACCEPT_MAIL_SUBJECT = "Your film request was accepted!";

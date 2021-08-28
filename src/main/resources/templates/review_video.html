@@ -8,7 +8,7 @@
 <meta id="_csrf" name="_csrf" th:content="${_csrf.token}" />
 <meta id="_csrf_header" name="_csrf_header"
 	th:content="${_csrf.headerName}" />
-<title th:text="${web.wname}"></title>
+<title > Web xem phim</title>
 
 <script th:src="@{~/js/jquery-1.11.1.min.js}"></script>
 <script th:src="@{~/js/bootstrap.js}"></script>
@@ -38,13 +38,8 @@
 										style="cursor: unset;"><img
 										th:src="@{~/image/{imageurl}(imageurl=${film.fimageurl})}"
 										alt="#" style="min-width: 450px; max-width: 450px"></a>
-									<a class="watch"
-										th:href="@{/watch/{id}(id=${film.fid})}"
-										style="
-										position: absolute; bottom: 30px; left: 163px; cursor:
-										pointer; border: 1px solid
-										transparent; border-radius: 4px; display: inline-block; color:
-										#fff; background-color: #d9534f; border-color:#d9534f; padding: 10px 20px;">XEM
+									<a class="watch" th:href="@{/watch/{id}(id=${film.fid})}"
+										style="position: absolute; bottom: 30px; left: 163px; cursor: pointer; border: 1px solid transparent; border-radius: 4px; display: inline-block; color: #fff; background-color: #d9534f; border-color: #d9534f; padding: 10px 20px;">XEM
 										PHIM</a>
 								</figure>
 							</div>
@@ -192,7 +187,7 @@
 	</div>
 	<script th:src="@{~/js/plugins.js}"></script>
 	<script th:src="@{~/js/app.js}"></script>
-
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script th:src="@{~/js/review_video.js}"></script>
 </body>
 

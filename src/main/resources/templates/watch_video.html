@@ -9,7 +9,7 @@
 <meta id="_csrf" name="_csrf" th:content="${_csrf.token}" />
 <meta id="_csrf_header" name="_csrf_header"
 	th:content="${_csrf.headerName}" />
-<title th:text="${web.wname}"></title>
+<title > Web xem phim</title>
 
 <script th:src="@{~/js/jquery-1.11.1.min.js}"></script>
 <script th:src="@{~/js/bootstrap.js}"></script>
@@ -29,8 +29,6 @@
 
 
 				<div class="row watch-video">
-
-
 					<div class="col-lg-8 col-sx-12"
 						style="padding: 20px; background: #131313; border-radius: 5px;">
 						<div class="row watch-video-des"
@@ -54,8 +52,6 @@
 							data-toggle="modal" data-target="#createModal"
 							onclick="setHiddenFieldModal()">Report This Video</div>
 					</div>
-
-
 					<!--style="transform: translateY(-54px);"  -->
 					<div class="col-lg-4 col-sx-12">
 						<div class="top-film">
@@ -264,5 +260,6 @@
 	<script th:src="@{~/js/plugins.js}"></script>
 	<script th:src="@{~/js/app.js}"></script>
 	<script th:src="@{~/js/watch_video.js}"></script>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
 </html>

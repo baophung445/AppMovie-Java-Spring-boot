@@ -9,7 +9,7 @@
 <meta id="_csrf" name="_csrf" th:content="${_csrf.token}" />
 <meta id="_csrf_header" name="_csrf_header"
 	th:content="${_csrf.headerName}" />
-<title > Web xem phim</title>
+<title>Web xem phim</title>
 
 <script th:src="@{~/js/jquery-1.11.1.min.js}"></script>
 <script th:src="@{~/js/bootstrap.js}"></script>
@@ -39,16 +39,17 @@
 				<div class="main-content form-group">
 					<input type="hidden" th:value="${webDomain}" id="webDomain">
 					<input type="hidden" th:value="${film.fid}" id="filmId">
-					<h2 class="float-left" th:text="${film.fname}"></h2>
-					<div class="float-right">
+					<h2 class="float-left" th:text="${film.fname}"
+						style="color: #FF9800; font-size: 26px; font-weight: bold; line-height: 1.25;text-transform: capitalize;"></h2>
+					<!-- <div class="float-right">
 						<input type="number" class="my-search-input"
 							placeholder="Search episode" id="searchCondition">
 						<button id="btnSearch" class="my-search-button"
 							onclick="searchFilm()">
 							<i class="fa fa-search"></i>
 						</button>
-					</div>
-					<table class="table table-striped" id="tableId">
+					</div> -->
+					<table class="table table-striped" id="tableId" style="margin-top: 30px;">
 						<thead class="thead-dark">
 							<tr>
 								<th scope="col">#</th>
@@ -107,10 +108,12 @@
 								</div>
 
 
-								<div class="modal-footer" style="align-items: center; display: flex; justify-content: center;margin-bottom: 10px;">
-									<button type="button" class="btn btn-primary" id="btnDelete" style="width: 90px;">Yes</button>
-									<button type="button" class="btn btn-secondary" style="width: 90px;"
-										data-dismiss="modal">No</button>
+								<div class="modal-footer"
+									style="align-items: center; display: flex; justify-content: center; margin-bottom: 10px;">
+									<button type="button" class="btn btn-primary" id="btnDelete"
+										style="width: 90px;">Yes</button>
+									<button type="button" class="btn btn-secondary"
+										style="width: 90px;" data-dismiss="modal">No</button>
 								</div>
 							</div>
 						</div>

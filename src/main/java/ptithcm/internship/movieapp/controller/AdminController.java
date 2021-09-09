@@ -272,10 +272,9 @@ public class AdminController {
 			Category category = categoryService.findByCategoryId(categoryId);
 			categoryService.delete(category);
 			return "redirect:/admin/categoryManager";
-		
-			
+
 		} catch (Exception e) {
-				
+
 			return "redirect:/admin/categoryManager";
 		}
 
@@ -583,18 +582,24 @@ public class AdminController {
 		return new ResponseEntity<FilmDetailRequest>(new FilmDetailRequest(), HttpStatus.OK);
 	}
 
-	@RequestMapping("deleteVideoDetail/{fdid}")
-	public String deleteFilmDetail(@PathVariable("fdid") String fdid) {
+	@RequestMapping("videoDetail/deleteVideoDetail/{fdid}")
+	public String deleteFilmDetail( @PathVariable("fdid") String fdid) {
 
 		try {
 			LOGGER.info("deleteFilmDetail: " + " fdid=" + fdid);
 			int id = Integer.parseInt(fdid);
 			FilmDetail filmDetail = filmDetailService.findByFdid(id);
 			filmDetailService.delete(filmDetail);
-			return "redirect:/admin/videoDetail/" + id + "?searchCondition=";
+			/* return "redirect:/admin/videoDetail/" + id + "?searchCondition="; */
+			return "redirect:/admin/videoManagerAdvance";
 		} catch (Exception e) {
-			int id = Integer.parseInt(fdid);
-			return "redirect:/admin/videoDetail/" + id + "?searchCondition=";
+
+			/*
+			 * int id = Integer.parseInt(fdid); return "redirect:/admin/videoDetail/" + id +
+			 * "?searchCondition=";
+			 */
+			return "redirect:/admin/videoManagerAdvance";
+
 		}
 	}
 

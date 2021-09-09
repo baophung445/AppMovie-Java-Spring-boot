@@ -448,14 +448,13 @@ public class FilmController {
 		List<Comment> list = commentService.findAllByFid(id);
 		List<Comment> listComment = commentService.findAllByFidWithFirstAndLast(id,
 				PageRequest.of(0, ConstantVariable.DEFAULT_COMMENT));
-		
+
 		List<Film> Filmhot = filmService.findHotFilmsByView();
 		List<Film> listTree = Filmhot.subList(2, 6);
-		List<Film> filmTwo= Filmhot.subList(1, 2);
+		List<Film> filmTwo = Filmhot.subList(1, 2);
 		model.addAttribute("listTree", listTree);
 		model.addAttribute("filmTwo", filmTwo);
-		
-		
+
 		if (film.getFdeploy() == 1) {
 			model.addAttribute("webDomain", webDomain);
 			model.addAttribute("film", film);
@@ -564,10 +563,7 @@ public class FilmController {
 
 		model.addAttribute("newFilmRequest", new FilmRequest());
 		model.addAttribute("listCatagory", listCategory);
-		
-		
-		
-		
+
 		model.addAttribute("listCountry", listCountry);
 		return "add_new_video";
 	}

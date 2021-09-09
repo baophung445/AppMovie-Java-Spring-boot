@@ -3118,7 +3118,7 @@ div, label {
 	font-family: 'Oswald', sans-serif;
 	padding: 15px 20px;
 	display: inline-block;
-	background: repeating-linear-gradient(45deg, black, transparent 100px);
+/* 	background: repeating-linear-gradient(45deg, black, transparent 100px); */
 	border-radius: 10px;
 	cursor: pointer;
 	/*  color: indianred; */

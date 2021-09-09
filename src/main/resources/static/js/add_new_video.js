@@ -3,7 +3,12 @@ $(document).ready(function() {
 	
 	
 	if ( localStorage.getItem('submitVideo')) {
-			swal("Good job!", "Bạn đã thêm phim thành công!", "success");
+			Swal.fire({
+					position: 'center',
+					icon: 'success',
+					title: 'Tạo phim thành công ',
+					footer: '<h4 >Vui lòng chờ admin xác nhận !!!</h4>'
+				})
 			localStorage.removeItem('submitVideo');	
 	}
 	
